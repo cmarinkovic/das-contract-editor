@@ -19,6 +19,7 @@ import {Container, Row} from "react-bootstrap";
 
 //Others
 import convert from "xml-js";
+import PreventUnload from "./PreventUnload";
 
 
 const ActivityDasContractProperties = ({appStarted, loadedContract, loadContract, loadContractError}) => {
@@ -162,7 +163,9 @@ const ActivityDasContractProperties = ({appStarted, loadedContract, loadContract
     //TODO: Markup can be modified for react-bootstrap.
     return (
         <Container className={`${loadContractError && "d-none"}`} fluid={true}>
+            {appStarted && <PreventUnload/>}
             {appStarted && <SavedToast toggle={toggleSavedToastRef} ms={5000}/>}
+
             <Row>
                 <ProcessViewer/>
             </Row>

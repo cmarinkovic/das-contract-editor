@@ -46,8 +46,6 @@ const Home = ({loadedContract, appStarted, startApp}) => {
 
                 return (
                     <div className="px-4 my-4">
-                        <PreventUnload/>
-
                         <div className="col-lg-6 mx-auto">
                             <h3 className="instructions-title">Instructions</h3>
                             <div className="my-4">
@@ -95,6 +93,7 @@ const Home = ({loadedContract, appStarted, startApp}) => {
 
         return (
             <div>
+                {appStarted && <PreventUnload/>}
                 {appStarted || loadedContract ? <Instructions/> : <Introduction startApp={startApp}/>}
             </div>
         );
