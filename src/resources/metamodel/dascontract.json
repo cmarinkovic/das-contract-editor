@@ -1,0 +1,37 @@
+{
+  "name": "DasContract",
+  "prefix": "dascontract",
+  "uri": "http://some-company/schema/bpmn/dascontract",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "DasContractActivity",
+      "extends": [
+        "bpmn:Activity"
+      ],
+      "properties": [
+        {
+          "name": "activity-properties",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "DasContractProcess",
+      "extends": [
+        "bpmn:Process"
+      ],
+      "properties": [
+        {
+          "name": "data-model",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

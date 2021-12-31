@@ -1,0 +1,214 @@
+//Basic
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.hidden {
+  display: none !important;
+}
+
+//Process editor
+.canvas {
+  height: 100%;
+}
+
+.process-container,
+.process-container > div {
+  height: 85vh;
+  position: relative;
+}
+
+.process-container > .message {
+  text-align: center;
+  display: table;
+
+  font-size: 16px;
+  color: #111;
+}
+
+.process-container > .message .note {
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+}
+
+.process-container .import-error .details {
+  max-width: 500px;
+  font-size: 12px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.process-container .import-error pre {
+  border: solid 1px #CCC;
+  background: #EEE;
+  padding: 10px;
+}
+
+.process-container:not(.with-import-error) .import-error,
+.process-container.with-import-error .intro,
+.process-container.with-diagram .intro {
+  display: none;
+}
+
+.process-container .canvas,
+.process-container.with-import-error .canvas {
+  display: none;
+}
+
+.process-container.with-diagram .canvas {
+  display: block;
+}
+
+#properties-panel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-left: 1px solid #ccc;
+  overflow: auto;
+
+  &:empty {
+    display: none;
+  }
+
+  > .djs-properties-panel {
+
+    min-height: 100%;
+  }
+}
+
+.save-buttons {
+  width: 40vw !important
+}
+
+//Viewer
+.viewer-canvas {
+  height: 100%;
+}
+
+.viewer-process-container,
+.viewer-process-container > div {
+  height: 50vh;
+  position: relative;
+}
+
+.viewer-process-container > .message {
+  text-align: center;
+  display: table;
+  font-size: 16px;
+  color: #111;
+}
+
+.viewer-process-container > .message .note {
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+}
+
+.viewer-process-container .import-error .details {
+  max-width: 500px;
+  font-size: 12px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.viewer-process-container .import-error pre {
+  border: solid 1px #CCC;
+  background: #EEE;
+  padding: 10px;
+}
+
+.viewer-process-container:not(.with-import-error) .import-error,
+.viewer-process-container.with-import-error .intro,
+.viewer-process-container.with-diagram .intro {
+  display: none;
+}
+
+.viewer-process-container .viewer-canvas,
+.viewer-process-container.with-import-error .viewer-canvas {
+  display: none;
+}
+
+.viewer-process-container.with-diagram .viewer-canvas {
+  display: block;
+}
+
+//DMN editor
+.dmn-viewer-canvas {
+  height: 100%;
+}
+
+.dmn-container,
+.dmn-container > div {
+  height: 50vh;
+  position: relative;
+}
+
+.dmn-container > .message {
+  text-align: center;
+  display: table;
+  font-size: 16px;
+  color: #111;
+}
+
+.dmn-container > .message .note {
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+}
+
+.dmn-container .import-error .details {
+  max-width: 500px;
+  font-size: 12px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.dmn-container .import-error pre {
+  border: solid 1px #CCC;
+  background: #EEE;
+  padding: 10px;
+}
+
+.dmn-container:not(.with-import-error) .import-error,
+.dmn-container.with-import-error .intro,
+.dmn-container.with-diagram .intro {
+  display: none;
+}
+
+.dmn-container .dmn-canvas,
+.dmn-container.with-import-error .dmn-canvas {
+  display: none;
+}
+
+.dmn-container.with-diagram .dmn-canvas {
+  display: block;
+}
+
+.accordion-inline {
+  display: inline;
+}
+
+.dmn-save-buttons {
+  width: 15vw !important
+}
+
+//CodeMirror
+.cm-editor {
+  font-size: 12px;
+}
