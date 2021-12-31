@@ -24,7 +24,7 @@ function App() {
             <Router>
                 <Home path="/"/>
                 <ProcessEditor path="/process-editor"/>
-                <ActivityDasContractProperties path="/activity-form-fields"/>
+                <ActivityDasContractProperties path="/activity-properties"/>
                 <DataModel path="/data-model"/>
                 <NotFound default/>
             </Router>

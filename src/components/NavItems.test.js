@@ -35,12 +35,12 @@ const NavItems = ({loadedContract}) => {
                                 setUrl("process-editor");
                                 toggleModalButtonRef.current.click();
                             }}>Process editor</Nav.Link>
-                            <Nav.Link as={Link} to="activity-properties" onClick={e => {
+                            <Nav.Link as={Link} to="activity-form-fields" onClick={e => {
                                 e.preventDefault();
-                                setUrl("activity-properties");
+                                setUrl("activity-form-fields");
                                 toggleModalButtonRef.current.click();
                             }
-                            }>Activity properties</Nav.Link>
+                            }>Form fields</Nav.Link>
                             <Nav.Link as={Link} to="data-model" onClick={e => {
                                 e.preventDefault();
                                 setUrl("data-model");

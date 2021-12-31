@@ -56,14 +56,12 @@ const UserActivityFormFields = ({task, updateTask, loadedContractJSON}) => {
                     }
                 );
 
+                const dataModel = JSON.parse(loadedContractJSON.elements[0].elements[elementsArrayIndex].attributes["dascontract:data-model"]);
                 const entities = [];
 
-                if (loadedContractJSON.elements[0].elements[elementsArrayIndex].attributes["dascontract:data-model"]) {
-                    const dataModel = JSON.parse(loadedContractJSON.elements[0].elements[elementsArrayIndex].attributes["dascontract:data-model"]);
-                    dataModel.forEach(entity => {
-                        entities.push(`${entity.name ? entity.name : "Untitled"} (${entity.id && entity.id})`);
-                    });
-                }
+                dataModel.forEach(entity => {
+                    entities.push(`${entity.name ? entity.name : "Untitled"} (${entity.id && entity.id})`);
+                });
 
                 return entities;
             }

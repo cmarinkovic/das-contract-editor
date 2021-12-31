@@ -67,5 +67,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@testing-library/dom": "^8.11.1"
+  }
 }

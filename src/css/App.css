@@ -165,4 +165,11 @@ code {
 .cm-editor {
   font-size: 12px;
 }
+.instructions-title {
+  font-weight: 400;
+}
+.instructions-description {
+  font-size: large;
+  font-weight: 300;
+}
 /*# sourceMappingURL=App.css.map */

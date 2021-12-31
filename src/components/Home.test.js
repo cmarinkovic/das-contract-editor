@@ -1,8 +1,7 @@
 //React
-import {Link, useNavigate} from "@reach/router"
+import {useNavigate} from "@reach/router"
 
 //Components
-import PreventUnload from "./PreventUnload";
 
 //Redux
 import {connect} from "react-redux";
@@ -10,7 +9,6 @@ import {startApp} from "../redux/UI/ui-actions";
 
 //Styles
 import {Button} from "react-bootstrap";
-import React from "react";
 
 //Other
 
@@ -45,46 +43,19 @@ const Home = ({loadedContract, appStarted, startApp}) => {
                 const navigate = useNavigate();
 
                 return (
-                    <div className="px-4 my-4">
-                        <PreventUnload/>
-
+                    <div className="px-4 py-5 my-5 text-center">
                         <div className="col-lg-6 mx-auto">
-                            <h3 className="instructions-title">Instructions</h3>
-                            <div className="my-4">
-                                <ol className="lead">
-                                    <li>
-                                        <p>Model the contract process at the <Link to={"/process-editor"}>process editor.</Link>
-                                        </p>
-                                        <p className="instructions-description">Edit process model elements and their
-                                            properties. Check model errors and
-                                            warnings.
-                                            Export the model.</p>
-                                    </li>
-                                    <li>
-                                        <p>Edit <Link to={"/activity-properties"}>activity properties</Link>.</p>
-                                        <p className="instructions-description">Edit form fields, a DMN model or script
-                                            depending on the activity type.</p>
-                                    </li>
-                                    <li>
-                                        <p>Edit <Link to={"/data-model"}>data model</Link>.</p>
-                                        <p className="instructions-description">Edit entities and its primitive properties and
-                                            reference properties.</p>
-                                    </li>
-                                    <li>
-                                        <p>Export .dascontract file (XML) or image (SVG) at the <Link to={"/process-editor"}>process
-                                            editor</Link>.</p>
-                                    </li>
-                                </ol>
-                            </div>
-
+                            <p className="lead mb-4">
+                                Instructions
+                            </p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                                 <Button
                                     onClick={() => navigate("process-editor")}
-                                    className="px-4 mt-2"
+                                    className="px-4"
                                     variant="outline-primary"
                                     size="lg"
                                 >
-                                    Edit process
+                                    Edit contract
                                 </Button>
                             </div>
                         </div>
@@ -115,4 +86,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
