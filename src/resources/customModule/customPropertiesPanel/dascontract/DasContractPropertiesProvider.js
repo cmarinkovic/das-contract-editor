@@ -56,7 +56,7 @@ function createGeneralTabGroups(
 
     var dasContractGroup = {
         id: 'das-contract',
-        label: 'Das Contract',
+        label: 'DasContract',
         entries: []
     };
 
