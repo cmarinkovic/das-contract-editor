@@ -22,7 +22,7 @@ const Home = ({loadedContract, appStarted, startApp}) => {
                         <div className="col-lg-6 mx-auto">
                             <p className="lead mb-4">
                                 A visual editor to design and generate model-driven smart contracts
-                                via the Das Contract v2.0 visual domain specific language. Currently
+                                via the DasContract v2.0 visual domain specific language. Currently
                                 supports the Solidity programming language.
                             </p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">

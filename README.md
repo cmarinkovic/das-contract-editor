@@ -43,8 +43,8 @@ The main dependencies used are listed.
 
 ## How to run and build
 
-1. Install the dependencies: npm install
+1. Install the dependencies: yarn install
 
-2. Deploy the development server: npm start
+2. Deploy the development server: yarn start
 
-To generate the production build: npm build
+To generate the production build: yarn build
