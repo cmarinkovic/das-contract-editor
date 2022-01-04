@@ -15,7 +15,7 @@ const NavbarImpl = () => {
     return (
         <Navbar id="nav" bg="light" expand="lg">
             <Container>
-                <Navbar.Brand>Das Contract Editor</Navbar.Brand>
+                <Navbar.Brand>DasContract Editor</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <NavItems />
             </Container>

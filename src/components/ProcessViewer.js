@@ -17,7 +17,7 @@ import propertiesPanelModule from "bpmn-js-properties-panel";
 import minimapModule from "diagram-js-minimap";
 import bpmnlintConfig from "../bpmnlinter-config";
 
-//Das Contract customization
+//DasContract customization
 import customViewerModule from "../resources/customViewerModule";
 import dasContractDescriptor from "../resources/metamodel/dascontract.json";
 
@@ -113,7 +113,7 @@ const ProcessViewer = ({loadedContract, defaultViewerHeight}) => {
                             <div className="px-4 py-5 my-5 text-center">
                                 <div className="col-lg-6 mx-auto">
                                     <p className="lead mb-4 note">
-                                        Ooops, we could not display the Das Contract model.
+                                        Ooops, we could not display the DasContract model.
                                     </p>
                                     <div className={`${!problemCause && "d-none"} lead mb-4 note`}>
                                         <span>Cause of the problem: </span>

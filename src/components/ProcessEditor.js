@@ -25,7 +25,7 @@ import bpmnlintConfig from "../bpmnlinter-config";
 import minimapModule from "diagram-js-minimap";
 import {useDropzone} from "react-dropzone";
 
-//Das Contract customization
+//DasContract customization
 import customModule from "../resources/customModule";
 import dasContractDescriptor from "../resources/metamodel/dascontract.json";
 import newDiagram from "../resources/newDiagram.dascontract";
@@ -301,7 +301,7 @@ const ProcessEditor = ({appStarted, loadedContract, loadContract, loadContractEr
                             <div className="px-4 py-5 my-5 text-center">
                                 <div className="col-lg-6 mx-auto">
                                     <p className="lead mb-4 note">
-                                        Drop a Das Contract file from your desktop or
+                                        Drop a DasContract file from your desktop or
                                         <span
                                             className="link-primary"
                                             style={{cursor: "pointer"}}
@@ -317,7 +317,7 @@ const ProcessEditor = ({appStarted, loadedContract, loadContract, loadContractEr
                             <div className="px-4 py-5 my-5 text-center">
                                 <div className="col-lg-6 mx-auto">
                                     <p className="lead mb-4 note">
-                                        Ooops, we could not display the Das Contract model.
+                                        Ooops, we could not display the DasContract model.
                                         <p>Drop a new file or <span
                                             className="link-primary"
                                             style={{cursor: "pointer"}}
