@@ -49,7 +49,7 @@ const Home = ({loadedContract, appStarted, startApp}) => {
                         <div className="col-lg-6 mx-auto">
                             <h3 className="instructions-title">Instructions</h3>
                             <div className="my-4">
-                                <ol className="lead">
+                                <ul className="lead">
                                     <li>
                                         <p>Model the contract process at the <Link to={"/process-editor"}>process editor.</Link>
                                         </p>
@@ -72,7 +72,7 @@ const Home = ({loadedContract, appStarted, startApp}) => {
                                         <p>Export .dascontract file (XML) or image (SVG) at the <Link to={"/process-editor"}>process
                                             editor</Link>.</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </div>
 
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
