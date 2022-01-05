@@ -47,13 +47,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "format": "prettier --write \"src/**/*.{js,jsx,md,css}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\""
   },
   "browserslist": {
     "production": [
@@ -69,8 +66,15 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^8.11.1",
+    "babel-eslint": "^10.1.0",
     "better-docs": "^2.3.2",
     "enzyme-adapter-react-16": "^1.15.6",
-    "jsdoc": "^3.6.7"
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "jsdoc": "^3.6.7",
+    "prettier": "^2.5.1"
   }
 }
