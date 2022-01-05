@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
  * Toast to display when user saves model.
  * @property {boolean} show
  * @property {function} setShow Setter for "show".
- * @property {function} useEffect 
+ * @property {function} useEffect
  */
 
 const SavedToast = ({ toggle, ms, fileName }) => {

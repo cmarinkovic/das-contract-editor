@@ -31,16 +31,25 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
         JSON.parse(task.attributes["dascontract:activity-properties"])
       );
 
-    setupSchema();
+    if (loadedContractJSON) {
+      setupSchema();
 
-    setUiSchema({
-      items: {
-        description: {
-          "ui:widget": "textarea",
+      setUiSchema({
+        items: {
+          description: {
+            "ui:widget": "textarea",
+          },
         },
-      },
-      "ui:order": ["id", "name", "label", "description", "readonly", "binding"],
-    });
+        "ui:order": [
+          "id",
+          "name",
+          "label",
+          "description",
+          "readonly",
+          "binding",
+        ],
+      });
+    }
   }, []);
 
   const [viewerHeight, setViewerHeight] = useState(400);

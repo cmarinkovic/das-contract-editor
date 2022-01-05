@@ -5,11 +5,23 @@ describe("<UserActivityFormFields/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<UserActivityFormFields />);
+    const task = {
+      attributes: {
+        id: "Foo",
+        name: "Bar",
+      },
+    };
+    const updateTaskMock = jest.fn();
+
+    component = render(
+      <UserActivityFormFields task={task} updateTask={updateTaskMock} />
+    );
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
+
+    expect(component.container).toHaveTextContent("Foo");
+    expect(component.container).toHaveTextContent("Bar");
   });
 });

@@ -5,11 +5,12 @@ describe("<SavedToast/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<SavedToast />);
+    const toggleMock = jest.fn();
+
+    component = render(<SavedToast toggle={toggleMock} ms={500} />);
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
   });
 });

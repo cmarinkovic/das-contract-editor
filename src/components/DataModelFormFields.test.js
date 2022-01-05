@@ -5,11 +5,19 @@ describe("<DataModelFormFields/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<DataModelFormFields />);
+    const process = {
+      attributes: {
+        id: "Foo",
+      },
+    };
+    const updateProcesMock = jest.fn();
+
+    component = render(
+      <DataModelFormFields process={process} updateProcess={updateProcesMock} />
+    );
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
   });
 });

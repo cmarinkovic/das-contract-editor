@@ -5,11 +5,23 @@ describe("<ScriptActivity/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<ScriptActivity task="" updateTask="" />);
+    const task = {
+      attributes: {
+        id: "Foo",
+        name: "Bar",
+      },
+    };
+    const updateTaskMock = jest.fn();
+
+    component = render(
+      <ScriptActivity task={task} updateTask={updateTaskMock} />
+    );
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
+
+    expect(component.container).toHaveTextContent("Foo");
+    expect(component.container).toHaveTextContent("Bar");
   });
 });

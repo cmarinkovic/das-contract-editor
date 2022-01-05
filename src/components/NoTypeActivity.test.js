@@ -3,15 +3,14 @@ import { prettyDOM, render } from "@testing-library/react";
 
 describe("<NoTypeActivity/>", () => {
   let component;
+  const task = {
+    attributes: {
+      id: "Foo",
+      name: "Bar",
+    },
+  };
 
   beforeEach(() => {
-    const task = {
-      attributes: {
-        id: "Foo",
-        name: "Bar",
-      },
-    };
-
     component = render(<NoTypeActivity task={task} />);
   });
 

@@ -51,69 +51,73 @@ const DataModelArrayFieldTemplate = (props) => {
   };
 
   return (
-    <div className={props.className}>
-      <Accordion>
-        <p className="h4">{props.title}</p>
-        {props.items &&
-          props.items.map((element) => (
-            <Accordion.Item
-              className={element.className}
-              eventKey={element.key}
-            >
-              <Accordion.Header>{getTitle(props.title)}</Accordion.Header>
-              <Accordion.Body>{element.children}</Accordion.Body>
-              {element.hasMoveDown && (
-                <Button
-                  variant="outline-primary"
-                  onClick={element.onReorderClick(
-                    element.index,
-                    element.index + 1
-                  )}
+    <>
+      {formData && (
+        <div className={props.className}>
+          <Accordion>
+            <p className="h4">{props.title}</p>
+            {props.items &&
+              props.items.map((element) => (
+                <Accordion.Item
+                  className={element.className}
+                  eventKey={element.key}
                 >
-                  <FontAwesomeIcon icon={faArrowDown} />
-                </Button>
-              )}
-
-              {element.hasMoveUp && (
-                <Button
-                  variant="outline-primary"
-                  onClick={element.onReorderClick(
-                    element.index,
-                    element.index - 1
+                  <Accordion.Header>{getTitle(props.title)}</Accordion.Header>
+                  <Accordion.Body>{element.children}</Accordion.Body>
+                  {element.hasMoveDown && (
+                    <Button
+                      variant="outline-primary"
+                      onClick={element.onReorderClick(
+                        element.index,
+                        element.index + 1
+                      )}
+                    >
+                      <FontAwesomeIcon icon={faArrowDown} />
+                    </Button>
                   )}
-                >
-                  <FontAwesomeIcon icon={faArrowUp} />
-                </Button>
-              )}
 
+                  {element.hasMoveUp && (
+                    <Button
+                      variant="outline-primary"
+                      onClick={element.onReorderClick(
+                        element.index,
+                        element.index - 1
+                      )}
+                    >
+                      <FontAwesomeIcon icon={faArrowUp} />
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline-primary"
+                    onClick={element.onDropIndexClick(element.index)}
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </Button>
+                  <hr />
+                </Accordion.Item>
+              ))}
+
+            {props.canAdd && (
               <Button
                 variant="outline-primary"
-                onClick={element.onDropIndexClick(element.index)}
+                onClick={() => {
+                  if (props.title === "Entities") {
+                    addEntity();
+                  } else if (props.title === "Primitive properties") {
+                    props.onAddClick();
+                  } else if (props.title === "Reference properties") {
+                    props.onAddClick();
+                  }
+                }}
               >
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon icon={faPlus} />
               </Button>
-              <hr />
-            </Accordion.Item>
-          ))}
-
-        {props.canAdd && (
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              if (props.title === "Entities") {
-                addEntity();
-              } else if (props.title === "Primitive properties") {
-                props.onAddClick();
-              } else if (props.title === "Reference properties") {
-                props.onAddClick();
-              }
-            }}
-          >
-            <FontAwesomeIcon icon={faPlus} />
-          </Button>
-        )}
-      </Accordion>
-    </div>
+            )}
+          </Accordion>
+        </div>
+      )}
+    </>
   );
 };
 

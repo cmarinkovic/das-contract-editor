@@ -1,15 +1,27 @@
-import BusinessRuleActivityTest from "./BusinessRuleActivityTest";
+import BusinessRuleActivity from "./BusinessRuleActivity";
 import { prettyDOM, render } from "@testing-library/react";
 
-describe("<BusinessRuleActivityTest/>", () => {
+describe("<BusinessRuleActivity/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<BusinessRuleActivityTest />);
+    const task = {
+      attributes: {
+        id: "Foo",
+        name: "Bar",
+      },
+    };
+    const updateTaskMock = jest.fn();
+
+    component = render(
+      <BusinessRuleActivity task={task} updateTask={updateTaskMock} />
+    );
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
+
+    expect(component.container).toHaveTextContent("Foo");
+    expect(component.container).toHaveTextContent("Bar");
   });
 });

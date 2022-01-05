@@ -49,54 +49,61 @@ const UserActivityArrayFieldTemplate = (props) => {
 
   //TODO: Markup can be modified for react-bootstrap.
   return (
-    <div className={props.className}>
-      {props.items &&
-        props.items.map((element) => (
-          <div key={element.key} className={element.className}>
-            <div>{element.children}</div>
-            {element.hasMoveDown && (
-              <Button
-                variant="outline-secondary"
-                onClick={element.onReorderClick(
-                  element.index,
-                  element.index + 1
+    <>
+      {formData && (
+        <div className={props.className}>
+          {props.items &&
+            props.items.map((element) => (
+              <div key={element.key} className={element.className}>
+                <div>{element.children}</div>
+                {element.hasMoveDown && (
+                  <Button
+                    variant="outline-secondary"
+                    onClick={element.onReorderClick(
+                      element.index,
+                      element.index + 1
+                    )}
+                  >
+                    <FontAwesomeIcon icon={faArrowDown} />
+                  </Button>
                 )}
-              >
-                <FontAwesomeIcon icon={faArrowDown} />
-              </Button>
-            )}
-            {element.hasMoveUp && (
-              <Button
-                variant="outline-secondary"
-                onClick={element.onReorderClick(
-                  element.index,
-                  element.index - 1
+                {element.hasMoveUp && (
+                  <Button
+                    variant="outline-secondary"
+                    onClick={element.onReorderClick(
+                      element.index,
+                      element.index - 1
+                    )}
+                  >
+                    <FontAwesomeIcon icon={faArrowUp} />
+                  </Button>
                 )}
-              >
-                <FontAwesomeIcon icon={faArrowUp} />
-              </Button>
-            )}
-            <Button
-              variant="outline-secondary"
-              onClick={element.onDropIndexClick(element.index)}
-            >
-              <FontAwesomeIcon icon={faTrashAlt} />
-            </Button>
-            <hr />
-          </div>
-        ))}
+                <Button
+                  variant="outline-secondary"
+                  onClick={element.onDropIndexClick(element.index)}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </Button>
+                <hr />
+              </div>
+            ))}
 
-      {props.canAdd && (
-        <Row>
-          <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
-            <Button variant="outline-primary" size="m" onClick={handleAddItem}>
-              <FontAwesomeIcon icon={faPlus} />
-            </Button>
-          </p>
-        </Row>
+          {props.canAdd && (
+            <Row>
+              <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
+                <Button
+                  variant="outline-primary"
+                  size="m"
+                  onClick={handleAddItem}
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                </Button>
+              </p>
+            </Row>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
-
 export default UserActivityArrayFieldTemplate;

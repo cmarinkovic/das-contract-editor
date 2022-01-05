@@ -5,11 +5,20 @@ describe("<SaveChangesModal/>", () => {
   let component;
 
   beforeEach(() => {
-    component = render(<SaveChangesModal />);
+    const toggleModalButtonRefMock = {
+      current: () => {},
+    };
+
+    component = render(
+      <SaveChangesModal
+        context="navLink"
+        url="/"
+        toggleModalButtonRef={toggleModalButtonRefMock}
+      />
+    );
   });
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
-    component.getByText("");
   });
 });

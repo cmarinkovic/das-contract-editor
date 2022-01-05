@@ -22,9 +22,9 @@ import CodeMirror from "@uiw/react-codemirror";
  */
 const ScriptActivity = ({ task, updateTask }) => {
   /**
-   * 
+   *
    */
-  const [script, setScript] = useState();
+  const [script, setScript] = useState("");
 
   useEffect(() => {
     task.attributes["dascontract:activity-properties"] &&
