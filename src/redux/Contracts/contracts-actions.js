@@ -1,18 +1,18 @@
 import * as actionTypes from "./contracts-types";
 
-export const loadContract = contract => {
-    return {
-        type: actionTypes.LOAD_CONTRACT,
-        payload: contract
-    }
-}
+export const loadContract = (contract) => {
+  return {
+    type: actionTypes.LOAD_CONTRACT,
+    payload: contract,
+  };
+};
 
-export const setLoadContractError = isError => {
-    return {
-        type: actionTypes.LOAD_CONTRACT_ERROR,
-        payload: isError
-    }
-}
+export const setLoadContractError = (isError) => {
+  return {
+    type: actionTypes.LOAD_CONTRACT_ERROR,
+    payload: isError,
+  };
+};
 
 /*export const fetchContractsRequest = () => {
     return {

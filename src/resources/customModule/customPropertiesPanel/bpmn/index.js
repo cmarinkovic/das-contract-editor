@@ -1,4 +1,4 @@
 module.exports = {
-  __init__: [ 'propertiesProvider' ],
-  propertiesProvider: [ 'type', require('./BpmnPropertiesProvider') ]
+  __init__: ["propertiesProvider"],
+  propertiesProvider: ["type", require("./BpmnPropertiesProvider")],
 };

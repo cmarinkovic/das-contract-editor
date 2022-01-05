@@ -4,12 +4,15 @@ html {
 body {
   margin: 0;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 .hidden {
   display: none !important;
@@ -40,8 +43,8 @@ code {
   text-align: left;
 }
 .process-container .import-error pre {
-  border: solid 1px #CCC;
-  background: #EEE;
+  border: solid 1px #ccc;
+  background: #eee;
   padding: 10px;
 }
 .process-container:not(.with-import-error) .import-error,
@@ -98,8 +101,8 @@ code {
   text-align: left;
 }
 .viewer-process-container .import-error pre {
-  border: solid 1px #CCC;
-  background: #EEE;
+  border: solid 1px #ccc;
+  background: #eee;
   padding: 10px;
 }
 .viewer-process-container:not(.with-import-error) .import-error,
@@ -140,8 +143,8 @@ code {
   text-align: left;
 }
 .dmn-container .import-error pre {
-  border: solid 1px #CCC;
-  background: #EEE;
+  border: solid 1px #ccc;
+  background: #eee;
   padding: 10px;
 }
 .dmn-container:not(.with-import-error) .import-error,

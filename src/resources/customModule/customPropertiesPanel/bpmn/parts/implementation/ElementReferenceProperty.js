@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-var entryFactory = require('../../../../factory/EntryFactory');
+var entryFactory = require("../../../../factory/EntryFactory");
 
-var cmdHelper = require('../../../../helper/CmdHelper');
+var cmdHelper = require("../../../../helper/CmdHelper");
 
 /**
  * Create an entry to modify a property of an element which
@@ -20,15 +20,20 @@ var cmdHelper = require('../../../../helper/CmdHelper');
  *
  * @return {Array<Object>} return an array containing the entries
  */
-module.exports = function(element, definition, bpmnFactory, translate, options) {
-
-  var id = options.id || 'element-property';
+module.exports = function (
+  element,
+  definition,
+  bpmnFactory,
+  translate,
+  options
+) {
+  var id = options.id || "element-property";
   var label = options.label;
   var referenceProperty = options.referenceProperty;
-  var modelProperty = options.modelProperty || 'name';
+  var modelProperty = options.modelProperty || "name";
   var shouldValidate = options.shouldValidate || false;
   var description = options.description;
-  var canBeHidden = !!options.hidden && typeof options.hidden === 'function';
+  var canBeHidden = !!options.hidden && typeof options.hidden === "function";
 
   var entry = entryFactory.textField(translate, {
     id: id,
@@ -36,38 +41,41 @@ module.exports = function(element, definition, bpmnFactory, translate, options) 
     modelProperty: modelProperty,
     description: description,
 
-    get: function(element, node) {
+    get: function (element, node) {
       var reference = definition.get(referenceProperty);
       var props = {};
       props[modelProperty] = reference && reference.get(modelProperty);
       return props;
     },
 
-    set: function(element, values, node) {
+    set: function (element, values, node) {
       var reference = definition.get(referenceProperty);
       var props = {};
       props[modelProperty] = values[modelProperty] || undefined;
       return cmdHelper.updateBusinessObject(element, reference, props);
     },
 
-    hidden: function(element, node) {
+    hidden: function (element, node) {
       if (canBeHidden) {
-        return options.hidden.apply(definition, arguments) || !definition.get(referenceProperty);
+        return (
+          options.hidden.apply(definition, arguments) ||
+          !definition.get(referenceProperty)
+        );
       }
       return !definition.get(referenceProperty);
-    }
+    },
   });
 
   if (shouldValidate) {
-    entry.validate = function(element, values, node) {
+    entry.validate = function (element, values, node) {
       var reference = definition.get(referenceProperty);
       if (reference && !values[modelProperty]) {
         var validationErrors = {};
-        validationErrors[modelProperty] = 'Must provide a value';
+        validationErrors[modelProperty] = "Must provide a value";
         return validationErrors;
       }
     };
   }
 
-  return [ entry ];
+  return [entry];
 };

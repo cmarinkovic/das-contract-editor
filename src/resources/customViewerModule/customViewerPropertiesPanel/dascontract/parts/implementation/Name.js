@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
+var entryFactory = require("bpmn-js-properties-panel/lib/factory/EntryFactory");
 
 /**
  * Create an entry to modify the name of an an element.
@@ -14,20 +14,18 @@ var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
  *                         the entry to modify the name
  */
 module.exports = function (element, options, translate) {
+  options = options || {};
+  var id = options.id || "name",
+    label = options.label || translate("Name"),
+    modelProperty = options.modelProperty || "name";
 
-    options = options || {};
-    var id = options.id || 'name',
-        label = options.label || translate('Name'),
-        modelProperty = options.modelProperty || 'name';
+  var nameEntry = entryFactory.textBox(translate, {
+    id: id,
+    label: label,
+    modelProperty: modelProperty,
+    get: options.get,
+    set: options.set,
+  });
 
-    var nameEntry = entryFactory.textBox(translate, {
-        id: id,
-        label: label,
-        modelProperty: modelProperty,
-        get: options.get,
-        set: options.set
-    });
-
-    return [nameEntry];
-
+  return [nameEntry];
 };

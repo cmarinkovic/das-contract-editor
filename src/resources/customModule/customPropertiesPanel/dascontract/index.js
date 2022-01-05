@@ -1,4 +1,4 @@
 module.exports = {
-  __init__: [ 'propertiesProvider' ],
-  propertiesProvider: [ 'type', require('./DasContractPropertiesProvider') ]
+  __init__: ["propertiesProvider"],
+  propertiesProvider: ["type", require("./DasContractPropertiesProvider")],
 };

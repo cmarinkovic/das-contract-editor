@@ -1,16 +1,24 @@
-'use strict';
+"use strict";
 
-var entryFactory = require('../../../../factory/EntryFactory'),
-    cmdHelper = require('../../../../helper/CmdHelper');
+var entryFactory = require("../../../../factory/EntryFactory"),
+  cmdHelper = require("../../../../helper/CmdHelper");
 
-var is = require('bpmn-js/lib/util/ModelUtil').is,
-    isEventSubProcess = require('bpmn-js/lib/util/DiUtil').isEventSubProcess;
+var is = require("bpmn-js/lib/util/ModelUtil").is,
+  isEventSubProcess = require("bpmn-js/lib/util/DiUtil").isEventSubProcess;
 
-module.exports = function(group, element, bpmnFactory, conditionalEventDefinition, elementRegistry, translate) {
-
-  var getValue = function(modelProperty) {
-    return function(element) {
-      var modelPropertyValue = conditionalEventDefinition.get('camunda:' + modelProperty);
+module.exports = function (
+  group,
+  element,
+  bpmnFactory,
+  conditionalEventDefinition,
+  elementRegistry,
+  translate
+) {
+  var getValue = function (modelProperty) {
+    return function (element) {
+      var modelPropertyValue = conditionalEventDefinition.get(
+        "camunda:" + modelProperty
+      );
       var value = {};
 
       value[modelProperty] = modelPropertyValue;
@@ -18,37 +26,47 @@ module.exports = function(group, element, bpmnFactory, conditionalEventDefinitio
     };
   };
 
-  var setValue = function(modelProperty) {
-    return function(element, values) {
+  var setValue = function (modelProperty) {
+    return function (element, values) {
       var props = {};
 
-      props['camunda:' + modelProperty] = values[modelProperty] || undefined;
+      props["camunda:" + modelProperty] = values[modelProperty] || undefined;
 
-      return cmdHelper.updateBusinessObject(element, conditionalEventDefinition, props);
+      return cmdHelper.updateBusinessObject(
+        element,
+        conditionalEventDefinition,
+        props
+      );
     };
   };
 
-  group.entries.push(entryFactory.textField(translate, {
-    id: 'variableName',
-    label: translate('Variable Name'),
-    modelProperty : 'variableName',
+  group.entries.push(
+    entryFactory.textField(translate, {
+      id: "variableName",
+      label: translate("Variable Name"),
+      modelProperty: "variableName",
 
-    get: getValue('variableName'),
-    set: setValue('variableName')
-  }));
+      get: getValue("variableName"),
+      set: setValue("variableName"),
+    })
+  );
 
   var isConditionalStartEvent =
-    is(element, 'bpmn:StartEvent') && !isEventSubProcess(element.parent);
+    is(element, "bpmn:StartEvent") && !isEventSubProcess(element.parent);
 
   if (!isConditionalStartEvent) {
-    group.entries.push(entryFactory.textField(translate, {
-      id: 'variableEvents',
-      label: translate('Variable Events'),
-      description: translate('Specify more than one variable change event as a comma separated list.'),
-      modelProperty : 'variableEvents',
+    group.entries.push(
+      entryFactory.textField(translate, {
+        id: "variableEvents",
+        label: translate("Variable Events"),
+        description: translate(
+          "Specify more than one variable change event as a comma separated list."
+        ),
+        modelProperty: "variableEvents",
 
-      get: getValue('variableEvents'),
-      set: setValue('variableEvents')
-    }));
+        get: getValue("variableEvents"),
+        set: setValue("variableEvents"),
+      })
+    );
   }
 };

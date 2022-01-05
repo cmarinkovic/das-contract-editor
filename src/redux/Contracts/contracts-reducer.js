@@ -1,24 +1,24 @@
 import * as actionTypes from "./contracts-types";
 
 const INITIAL_STATE = {
-    /*loading: false,*/
-    loadedContract: null,
-    loadContractError: false,
+  /*loading: false,*/
+  loadedContract: null,
+  loadContractError: false,
 };
 
 const contractsReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case actionTypes.LOAD_CONTRACT:
-            return {
-                ...state,
-                loadedContract: action.payload
-            }
-        case actionTypes.LOAD_CONTRACT_ERROR:
-            return {
-                ...state,
-                loadContractError: action.payload
-            }
-        /*        case actionTypes.FETCH_CONTRACTS_REQUEST:
+  switch (action.type) {
+    case actionTypes.LOAD_CONTRACT:
+      return {
+        ...state,
+        loadedContract: action.payload,
+      };
+    case actionTypes.LOAD_CONTRACT_ERROR:
+      return {
+        ...state,
+        loadContractError: action.payload,
+      };
+    /*        case actionTypes.FETCH_CONTRACTS_REQUEST:
                 return {
                     ...state,
                     loading: true
@@ -36,9 +36,9 @@ const contractsReducer = (state = INITIAL_STATE, action) => {
                     loading: false,
                     error: action.payload
                 }*/
-        default:
-            return state
-    }
+    default:
+      return state;
+  }
 };
 
 export default contractsReducer;

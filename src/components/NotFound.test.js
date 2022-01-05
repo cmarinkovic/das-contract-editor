@@ -1,21 +1,21 @@
 import NotFound from "./NotFound";
-import {prettyDOM, render} from "@testing-library/react";
-import {Router} from "@reach/router";
+import { prettyDOM, render } from "@testing-library/react";
+import { Router } from "@reach/router";
 
 describe("<NotFound/>", () => {
-    let component;
+  let component;
 
-    beforeEach(() => {
-        component = render(
-            <Router>
-                <NotFound default/>
-            </Router>
-        );
-    });
+  beforeEach(() => {
+    component = render(
+      <Router>
+        <NotFound default />
+      </Router>
+    );
+  });
 
-    test("Renders content", () => {
-        console.log(prettyDOM(component.container));
+  test("Renders content", () => {
+    console.log(prettyDOM(component.container));
 
-        component.getByText("Sorry, nothing here...");
-    })
-})
+    component.getByText("Sorry, nothing here...");
+  });
+});

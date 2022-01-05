@@ -1,6 +1,6 @@
-var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
+var entryFactory = require("bpmn-js-properties-panel/lib/factory/EntryFactory");
 
-var cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper');
+var cmdHelper = require("bpmn-js-properties-panel/lib/helper/CmdHelper");
 
 /**
  * Create an entry to modify a property of an element which
@@ -18,54 +18,62 @@ var cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper');
  *
  * @return {Array<Object>} return an array containing the entries
  */
-module.exports = function (element, definition, bpmnFactory, translate, options) {
+module.exports = function (
+  element,
+  definition,
+  bpmnFactory,
+  translate,
+  options
+) {
+  var id = options.id || "element-property";
+  var label = options.label;
+  var referenceProperty = options.referenceProperty;
+  var modelProperty = options.modelProperty || "name";
+  var shouldValidate = options.shouldValidate || false;
+  var description = options.description;
+  var canBeHidden = !!options.hidden && typeof options.hidden === "function";
 
-    var id = options.id || 'element-property';
-    var label = options.label;
-    var referenceProperty = options.referenceProperty;
-    var modelProperty = options.modelProperty || 'name';
-    var shouldValidate = options.shouldValidate || false;
-    var description = options.description;
-    var canBeHidden = !!options.hidden && typeof options.hidden === 'function';
+  var entry = entryFactory.textField(translate, {
+    id: id,
+    label: label,
+    modelProperty: modelProperty,
+    description: description,
 
-    var entry = entryFactory.textField(translate, {
-        id: id,
-        label: label,
-        modelProperty: modelProperty,
-        description: description,
+    get: function (element, node) {
+      var reference = definition.get(referenceProperty);
+      var props = {};
+      props[modelProperty] = reference && reference.get(modelProperty);
+      return props;
+    },
 
-        get: function (element, node) {
-            var reference = definition.get(referenceProperty);
-            var props = {};
-            props[modelProperty] = reference && reference.get(modelProperty);
-            return props;
-        },
+    set: function (element, values, node) {
+      var reference = definition.get(referenceProperty);
+      var props = {};
+      props[modelProperty] = values[modelProperty] || undefined;
+      return cmdHelper.updateBusinessObject(element, reference, props);
+    },
 
-        set: function (element, values, node) {
-            var reference = definition.get(referenceProperty);
-            var props = {};
-            props[modelProperty] = values[modelProperty] || undefined;
-            return cmdHelper.updateBusinessObject(element, reference, props);
-        },
+    hidden: function (element, node) {
+      if (canBeHidden) {
+        return (
+          options.hidden.apply(definition, arguments) ||
+          !definition.get(referenceProperty)
+        );
+      }
+      return !definition.get(referenceProperty);
+    },
+  });
 
-        hidden: function (element, node) {
-            if (canBeHidden) {
-                return options.hidden.apply(definition, arguments) || !definition.get(referenceProperty);
-            }
-            return !definition.get(referenceProperty);
-        }
-    });
+  if (shouldValidate) {
+    entry.validate = function (element, values, node) {
+      var reference = definition.get(referenceProperty);
+      if (reference && !values[modelProperty]) {
+        var validationErrors = {};
+        validationErrors[modelProperty] = "Must provide a value";
+        return validationErrors;
+      }
+    };
+  }
 
-    if (shouldValidate) {
-        entry.validate = function (element, values, node) {
-            var reference = definition.get(referenceProperty);
-            if (reference && !values[modelProperty]) {
-                var validationErrors = {};
-                validationErrors[modelProperty] = 'Must provide a value';
-                return validationErrors;
-            }
-        };
-    }
-
-    return [entry];
+  return [entry];
 };

@@ -1,5 +1,5 @@
 //React
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 //Components
 
@@ -9,25 +9,21 @@ import {useEffect} from "react";
 
 //Other
 
-
 const PreventUnload = () => {
-    useEffect(() => {
-        window.addEventListener('beforeunload', promptUser)
+  useEffect(() => {
+    window.addEventListener("beforeunload", promptUser);
 
-        return () => {
-            window.removeEventListener('beforeunload', promptUser)
-        }
-    }, []);
-
-    const promptUser = e => {
-        e.preventDefault()
-        e.returnValue = ''
+    return () => {
+      window.removeEventListener("beforeunload", promptUser);
     };
+  }, []);
 
-    return (
-        <>
-        </>
-    )
+  const promptUser = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
+
+  return <></>;
 };
 
 export default PreventUnload;

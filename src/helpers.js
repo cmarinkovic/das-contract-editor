@@ -1,12 +1,11 @@
 export const debounce = (fn, timeout) => {
+  let timer;
 
-    let timer;
+  return function () {
+    if (timer) {
+      clearTimeout(timer);
+    }
 
-    return function () {
-        if (timer) {
-            clearTimeout(timer);
-        }
-
-        timer = setTimeout(fn, timeout);
-    };
+    timer = setTimeout(fn, timeout);
+  };
 };

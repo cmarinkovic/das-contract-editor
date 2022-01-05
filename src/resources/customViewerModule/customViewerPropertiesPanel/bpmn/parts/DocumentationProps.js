@@ -1,61 +1,73 @@
-'use strict';
+"use strict";
 
-var entryFactory = require('../../../factory/EntryFactory'),
-    cmdHelper = require('../../../helper/CmdHelper');
+var entryFactory = require("../../../factory/EntryFactory"),
+  cmdHelper = require("../../../helper/CmdHelper");
 
-var ModelUtil = require('bpmn-js/lib/util/ModelUtil'),
-    is = ModelUtil.is,
-    getBusinessObject = ModelUtil.getBusinessObject;
+var ModelUtil = require("bpmn-js/lib/util/ModelUtil"),
+  is = ModelUtil.is,
+  getBusinessObject = ModelUtil.getBusinessObject;
 
-var DOCUMENTATION_TEXT_FORMAT = 'text/plain';
+var DOCUMENTATION_TEXT_FORMAT = "text/plain";
 
-
-module.exports = function(group, element, bpmnFactory, translate) {
-
-  var findDocumentation = function(docs) {
-    return docs.find(function(d) {
-      return (d.textFormat || DOCUMENTATION_TEXT_FORMAT) === DOCUMENTATION_TEXT_FORMAT;
+module.exports = function (group, element, bpmnFactory, translate) {
+  var findDocumentation = function (docs) {
+    return docs.find(function (d) {
+      return (
+        (d.textFormat || DOCUMENTATION_TEXT_FORMAT) ===
+        DOCUMENTATION_TEXT_FORMAT
+      );
     });
   };
 
-  var getValue = function(businessObject) {
-    return function(element) {
+  var getValue = function (businessObject) {
+    return function (element) {
       var documentation = findDocumentation(
-        businessObject && businessObject.get('documentation')
+        businessObject && businessObject.get("documentation")
       );
 
-      var text = documentation && documentation.text || '';
+      var text = (documentation && documentation.text) || "";
 
       return { documentation: text };
     };
   };
 
-  var setValue = function(businessObject) {
-    return function(element, values) {
+  var setValue = function (businessObject) {
+    return function (element, values) {
       var text = values.documentation;
 
       var documentation = findDocumentation(
-        businessObject && businessObject.get('documentation')
+        businessObject && businessObject.get("documentation")
       );
 
       // update or removing existing documentation
       if (documentation) {
-
         if (text) {
-          return cmdHelper.updateBusinessObject(element, documentation, { text: values.documentation });
+          return cmdHelper.updateBusinessObject(element, documentation, {
+            text: values.documentation,
+          });
         } else {
-          return cmdHelper.removeElementsFromList(element, businessObject, 'documentation', null, [ documentation ]);
+          return cmdHelper.removeElementsFromList(
+            element,
+            businessObject,
+            "documentation",
+            null,
+            [documentation]
+          );
         }
       }
 
       if (text) {
-
         // create new documentation entry
-        return cmdHelper.addElementsTolist(element, businessObject, 'documentation', [
-          bpmnFactory.create('bpmn:Documentation', {
-            text: values.documentation
-          })
-        ]);
+        return cmdHelper.addElementsTolist(
+          element,
+          businessObject,
+          "documentation",
+          [
+            bpmnFactory.create("bpmn:Documentation", {
+              text: values.documentation,
+            }),
+          ]
+        );
       }
 
       // no text and nothing removed -> we are good
@@ -64,9 +76,9 @@ module.exports = function(group, element, bpmnFactory, translate) {
 
   // Element Documentation
   var elementDocuEntry = entryFactory.textBox(translate, {
-    id: 'documentation',
-    label: translate('Element Documentation'),
-    modelProperty: 'documentation'
+    id: "documentation",
+    label: translate("Element Documentation"),
+    modelProperty: "documentation",
   });
 
   elementDocuEntry.set = setValue(getBusinessObject(element));
@@ -75,20 +87,18 @@ module.exports = function(group, element, bpmnFactory, translate) {
 
   group.entries.push(elementDocuEntry);
 
-
   var processRef;
 
   // Process Documentation when having a Collaboration Diagram
-  if (is(element, 'bpmn:Participant')) {
-
+  if (is(element, "bpmn:Participant")) {
     processRef = getBusinessObject(element).processRef;
 
     // do not show for collapsed Pools/Participants
     if (processRef) {
       var processDocuEntry = entryFactory.textBox(translate, {
-        id: 'process-documentation',
-        label: translate('Process Documentation'),
-        modelProperty: 'documentation'
+        id: "process-documentation",
+        label: translate("Process Documentation"),
+        modelProperty: "documentation",
       });
 
       processDocuEntry.set = setValue(processRef);
@@ -98,5 +108,4 @@ module.exports = function(group, element, bpmnFactory, translate) {
       group.entries.push(processDocuEntry);
     }
   }
-
 };

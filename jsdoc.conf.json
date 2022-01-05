@@ -5,6 +5,11 @@
   },
   "source": {
     "include": ["src"],
+    "exclude": [
+      "src/resources/customModule",
+      "src/resources/customViewerModule",
+      "src/bpmnlinter-config.js"
+    ],
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
@@ -15,8 +20,11 @@
     }
   },
   "opts": {
+    "encoding": "utf8",
     "destination": "docs",
     "recurse": true,
-    "readme": "README.md"
+    "readme": "README.md",
+    "verbose": true,
+    "template": "./node_modules/better-docs"
   }
 }

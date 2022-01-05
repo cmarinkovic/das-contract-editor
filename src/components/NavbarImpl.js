@@ -6,21 +6,20 @@ import NavItems from "./NavItems";
 //Redux
 
 //Styles
-import {Container, Navbar} from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 
 //Other
 
-
 const NavbarImpl = () => {
-    return (
-        <Navbar id="nav" bg="light" expand="lg">
-            <Container>
-                <Navbar.Brand>DasContract Editor</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <NavItems />
-            </Container>
-        </Navbar>
-    );
-}
+  return (
+    <Navbar id="nav" bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand>DasContract Editor</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <NavItems />
+      </Container>
+    </Navbar>
+  );
+};
 
 export default NavbarImpl;

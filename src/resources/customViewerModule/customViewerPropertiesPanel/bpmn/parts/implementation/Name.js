@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var entryFactory = require('../../../../factory/EntryFactory');
+var entryFactory = require("../../../../factory/EntryFactory");
 
 /**
  * Create an entry to modify the name of an an element.
@@ -13,21 +13,19 @@ var entryFactory = require('../../../../factory/EntryFactory');
  * @return {Array<Object>} return an array containing
  *                         the entry to modify the name
  */
-module.exports = function(element, options, translate) {
-
+module.exports = function (element, options, translate) {
   options = options || {};
-  var id = options.id || 'name',
-      label = options.label || translate('Name'),
-      modelProperty = options.modelProperty || 'name';
+  var id = options.id || "name",
+    label = options.label || translate("Name"),
+    modelProperty = options.modelProperty || "name";
 
   var nameEntry = entryFactory.textBox(translate, {
     id: id,
     label: label,
     modelProperty: modelProperty,
     get: options.get,
-    set: options.set
+    set: options.set,
   });
 
-  return [ nameEntry ];
-
+  return [nameEntry];
 };

@@ -1,5 +1,5 @@
 //React
-import {Router} from "@reach/router";
+import { Router } from "@reach/router";
 
 //Components
 import NavbarImpl from "./components/NavbarImpl";
@@ -16,20 +16,19 @@ import "./css/App.css";
 
 //Other
 
-
 function App() {
-    return (
-        <div className="App">
-            <NavbarImpl/>
-            <Router>
-                <Home path="/"/>
-                <ProcessEditor path="/process-editor"/>
-                <ActivityDasContractProperties path="/activity-properties"/>
-                <DataModel path="/data-model"/>
-                <NotFound default/>
-            </Router>
-        </div>
-    );
+  return (
+    <div className="App">
+      <NavbarImpl />
+      <Router>
+        <Home path="/" />
+        <ProcessEditor path="/process-editor" />
+        <ActivityDasContractProperties path="/activity-properties" />
+        <DataModel path="/data-model" />
+        <NotFound default />
+      </Router>
+    </div>
+  );
 }
 
 export default App;

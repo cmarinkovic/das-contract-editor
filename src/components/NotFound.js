@@ -1,6 +1,6 @@
 //React
-import {useEffect} from "react";
-import {useNavigate} from "@reach/router";
+import { useEffect } from "react";
+import { useNavigate } from "@reach/router";
 
 //Components
 
@@ -10,15 +10,14 @@ import {useNavigate} from "@reach/router";
 
 //Other
 
-
 const NotFound = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        navigate("/");
-    }, []);
+  useEffect(() => {
+    navigate("/");
+  }, []);
 
-    return <p>Sorry, nothing here...</p>
-}
+  return <p>Sorry, nothing here...</p>;
+};
 
 export default NotFound;
