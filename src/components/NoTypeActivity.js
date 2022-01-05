@@ -10,7 +10,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 //Other
+import PropTypes from "prop-types";
 
+/**
+ * Activity of no type.
+ * @component
+ */
 const NoTypeActivity = ({ task }) => {
   return (
     <Col sm="4">
@@ -27,4 +32,12 @@ const NoTypeActivity = ({ task }) => {
     </Col>
   );
 };
+
+NoTypeActivity.propTypes = {
+  /**
+   * Task data.
+   */
+  task: PropTypes.object.isRequired,
+};
+
 export default NoTypeActivity;

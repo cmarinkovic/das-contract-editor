@@ -16,7 +16,14 @@ import CodeMirror from "@uiw/react-codemirror";
 
 //Other
 
+/**
+ * Script activity. It provides a code editor to add a script.
+ * @component
+ */
 const ScriptActivity = ({ task, updateTask }) => {
+  /**
+   * 
+   */
   const [script, setScript] = useState();
 
   useEffect(() => {

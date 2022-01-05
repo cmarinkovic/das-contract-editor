@@ -1,4 +1,5 @@
 //React
+import React from "react";
 
 //Components
 import NavItems from "./NavItems";
@@ -10,6 +11,10 @@ import { Container, Navbar } from "react-bootstrap";
 
 //Other
 
+/**
+ * Navbar wrapper. "NavbarImpl" is used to avoid confict with react-bootstrap component.
+ * @component
+ */
 const NavbarImpl = () => {
   return (
     <Navbar id="nav" bg="light" expand="lg">

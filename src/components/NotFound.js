@@ -10,6 +10,11 @@ import { useNavigate } from "@reach/router";
 
 //Other
 
+/**
+ * Redirects to Home if URL is invalid.
+ * @component
+ * @property {function} useEffect Redirects to "/" after render.
+ */
 const NotFound = () => {
   const navigate = useNavigate();
 

@@ -1,8 +1,15 @@
-import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { prettyDOM, render } from "@testing-library/react";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("<App/>", () => {
+  let component;
+
+  beforeEach(() => {
+    component = render(<App />);
+  });
+
+  test("Renders content", () => {
+    console.log(prettyDOM(component.container));
+    component.getByText("DasContract"); //Sub-components rendered.
+  });
 });

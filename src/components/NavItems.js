@@ -12,9 +12,28 @@ import { connect } from "react-redux";
 import { Nav, Navbar } from "react-bootstrap";
 
 //Other
+import PropTypes from "prop-types";
+
+/**
+ *  Navbar items.
+ * @component
+ */
 
 const NavItems = ({ loadedContract }) => {
+  /**
+   * Toggle modal button reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const toggleModalButtonRef = useRef();
+
+  /**
+   * URL state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
   const [url, setUrl] = useState("#");
 
   return (
@@ -84,9 +103,18 @@ const NavItems = ({ loadedContract }) => {
     </>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     loadedContract: state.contracts.loadedContract,
   };
 };
+
+NavItems.propTypes = {
+  /**
+   * Loaded contract JSON.
+   */
+  loadedContract: PropTypes.object,
+};
+
 export default connect(mapStateToProps)(NavItems);
