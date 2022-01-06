@@ -20,6 +20,7 @@ import { Container, Row } from "react-bootstrap";
 //Others
 import convert from "xml-js";
 import PreventUnload from "./PreventUnload";
+import PropTypes from "prop-types";
 
 /**
  * Enables editing activity DasContract properties. Shows a process viewer for reference.

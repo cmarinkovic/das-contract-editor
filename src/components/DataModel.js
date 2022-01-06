@@ -17,6 +17,7 @@ import { Container, Row } from "react-bootstrap";
 
 //Other
 import convert from "xml-js";
+import PropTypes from "prop-types";
 
 /**
  * Enables editing the DasContract data model. Shows a process viewer for reference.
@@ -97,7 +98,7 @@ const DataModel = ({
 
   /**
    * Updated a process data model.
-   * 
+   *
    * @param {Object} modelElementToUpdate Model element to update in "modelElements".
    * @param {Object} newData New data for the model element to update.
    */

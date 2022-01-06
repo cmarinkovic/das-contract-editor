@@ -15,7 +15,6 @@ import {
   faPlus,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 //Other
 import PropTypes from "prop-types";
@@ -132,7 +131,7 @@ UserActivityArrayFieldTemplate.propTypes = {
   /**
    * Props coming form "SchemaForm" component.
    */
-  props: propTypes.object.isRequired,
+  props: PropTypes.object,
 };
 
 export default UserActivityArrayFieldTemplate;

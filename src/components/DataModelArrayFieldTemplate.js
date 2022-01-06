@@ -142,7 +142,7 @@ DataModelArrayFieldTemplate.propTypes = {
   /**
    * Props coming form "SchemaForm" component.
    */
-  props: propTypes.object.isRequired,
+  props: PropTypes.object,
 };
 
 export default DataModelArrayFieldTemplate;
