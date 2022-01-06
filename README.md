@@ -6,11 +6,15 @@ This is the result of my Computer Science degree thesis project.
 
 
 
-Production build: https://das-contract-editor.herokuapp.com
+[Production build](https://das-contract-editor.herokuapp.com)
 
 
 
 This application is fully written on React. Primarily, it integrates the functionality of bpmn-js and dmn-js, for modeling purposes, alongside with react-jsonschema-form and react-codemirror, for user input; and lastly, react-resizable and react-dropzone to improve usability.
+
+
+
+[Code documentation](https://cmarinkovic.github.io/das-contract-editor/)
 
 
 
