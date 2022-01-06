@@ -236,7 +236,7 @@ ProcessViewer.propTypes = {
   /**
    * Loaded contract from store.
    */
-  loadedContract: PropTypes.object.isRequired,
+  loadedContract: PropTypes.object,
 
   /**
    * App started indicator from store.
