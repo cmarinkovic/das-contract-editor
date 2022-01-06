@@ -170,7 +170,11 @@ CustomPaletteProvider.prototype.getPaletteEntries = function (element) {
       "activity",
       "bpmn-icon-task",
       translate("Create Task")
-    ) /*
+    ),
+    /**
+     * Remove palette elements.
+     */
+    /*
         'create.data-object': createAction(
             'bpmn:DataObjectReference', 'data-object', 'bpmn-icon-data-object',
             translate('Create DataObjectReference')
@@ -178,8 +182,7 @@ CustomPaletteProvider.prototype.getPaletteEntries = function (element) {
         'create.data-store': createAction(
             'bpmn:DataStoreReference', 'data-store', 'bpmn-icon-data-store',
             translate('Create DataStoreReference')
-        ),*/,
-    "create.subprocess-expanded": {
+        ),*/ "create.subprocess-expanded": {
       group: "activity",
       className: "bpmn-icon-subprocess-expanded",
       title: translate("Create expanded SubProcess"),

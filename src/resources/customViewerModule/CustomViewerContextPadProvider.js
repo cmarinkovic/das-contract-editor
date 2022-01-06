@@ -442,6 +442,9 @@ ContextPadProvider.prototype.getContextPadEntries = function (element) {
     });
   }
 
+  /**
+   * Modified return value to remove menu.
+   */
   return {};
 };
 

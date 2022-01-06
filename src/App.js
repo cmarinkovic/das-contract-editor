@@ -16,6 +16,11 @@ import "./css/App.css";
 
 //Other
 
+/**
+ * Main component of the application.
+ *
+ * @component
+ */
 function App() {
   return (
     <div className="App">

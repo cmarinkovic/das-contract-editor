@@ -1,11 +1,24 @@
 import * as actionTypes from "./contracts-types";
 
+/**
+ * Initial state of the store.
+ * @constant
+ *
+ * @type {Object}
+ */
 const INITIAL_STATE = {
   /*loading: false,*/
   loadedContract: null,
   loadContractError: false,
 };
 
+/**
+ * Contracts reducer.
+ *
+ * @param {Object} state State of the store.
+ * @param {Object} action Invoked action.
+ * @returns
+ */
 const contractsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.LOAD_CONTRACT:

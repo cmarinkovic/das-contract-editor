@@ -64,12 +64,18 @@ function createGeneralTabGroups(
 
   documentationProps(documentationGroup, element, bpmnFactory, translate);
 
+  /**
+   * DasContract props group.
+   */
   var dasContractGroup = {
     id: "das-contract",
     label: "DasContract",
     entries: [],
   };
 
+  /**
+   * Adds DasContract props to properties panel.
+   */
   DasContractProps(dasContractGroup, element, translate);
 
   return [generalGroup, detailsGroup, dasContractGroup, documentationGroup];

@@ -1,5 +1,11 @@
 import * as actionTypes from "./contracts-types";
 
+/**
+ * Loads the contract into the store.
+ *
+ * @param {Object} contract Contract object.
+ * @returns {{string, Object}} Action result.
+ */
 export const loadContract = (contract) => {
   return {
     type: actionTypes.LOAD_CONTRACT,
@@ -7,6 +13,12 @@ export const loadContract = (contract) => {
   };
 };
 
+/**
+ * Sets "loadContractError" indicator value.
+ *
+ * @param {boolean} isError Error indicator.
+ * @returns {string, boolean} Action result.
+ */
 export const setLoadContractError = (isError) => {
   return {
     type: actionTypes.LOAD_CONTRACT_ERROR,

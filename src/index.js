@@ -38,6 +38,9 @@ import "dmn-js/dist/assets/dmn-font/css/dmn.css";
 /// Other
 import "react-resizable/css/styles.css";
 
+/**
+ * Renders React in the DOM at the element with id === "root"
+ */
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

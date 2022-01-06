@@ -4,6 +4,9 @@ var entryFactory = require("bpmn-js-properties-panel/lib/factory/EntryFactory"),
   participantHelper = require("bpmn-js-properties-panel/lib/helper/ParticipantHelper");
 
 module.exports = function (group, element, translate, options) {
+  /**
+   * DasContract activity properties.
+   */
   if (is(element, "bpmn:Activity")) {
     group.entries.push(
       entryFactory.textBox(translate, {
@@ -14,6 +17,9 @@ module.exports = function (group, element, translate, options) {
     );
   }
 
+  /**
+   * DasContract Data model for process.
+   */
   if (is(element, "bpmn:Process")) {
     group.entries.push(
       entryFactory.textBox(translate, {
@@ -24,10 +30,10 @@ module.exports = function (group, element, translate, options) {
     );
   }
 
+  /**
+   * DasContract Data model for processes inside lanes.
+   */
   if (is(element, "bpmn:Participant")) {
-    /*
-     * Das Contract Data model
-     */
     var dataModelEntry = entryFactory.textBox(translate, {
       id: "process-data-model",
       label: translate("Data model"),

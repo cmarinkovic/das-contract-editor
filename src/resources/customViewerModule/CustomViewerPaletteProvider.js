@@ -205,5 +205,8 @@ CustomPaletteProvider.prototype.getPaletteEntries = function (element) {
     ),
   });
 
+  /**
+   * Modified return value to remove pallete.
+   */
   return {};
 };

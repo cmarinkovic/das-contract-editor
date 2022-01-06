@@ -3,6 +3,9 @@ import CustomViewerReplaceMenuProvider from "./CustomViewerReplaceMenuProvider";
 import CustomViewerContexPadProvider from "./CustomViewerContextPadProvider";
 import DasContractPropertiesProvider from "./customViewerPropertiesPanel/dascontract/DasContractPropertiesProvider";
 
+/**
+ * Customized process editor for ProcessViewer.
+ */
 const CustomViewerModule = {
   __init__: [
     "paletteProvider",
