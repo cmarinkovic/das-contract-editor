@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 
 /**
  * Activity of no type.
+ *
  * @component
  */
 const NoTypeActivity = ({ task }) => {

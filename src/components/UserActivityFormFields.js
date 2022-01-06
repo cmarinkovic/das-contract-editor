@@ -21,8 +21,28 @@ import { javascript } from "@codemirror/lang-javascript";
 import SchemaForm from "@rjsf/bootstrap-4";
 
 const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
+  /**
+   * Form schema state hook.
+   * @constant
+   *
+   * @type {[Object, function]}
+   */
   const [schema, setSchema] = useState({});
+
+  /**
+   * Form UI schema state hook.
+   * @constant
+   *
+   * @type {[Object, function]}
+   */
   const [uiSchema, setUiSchema] = useState({});
+
+  /**
+   * Form data state hook.
+   * @constant
+   *
+   * @type {Array}
+   */
   const [formData, setFormData] = useState([]);
 
   useEffect(() => {
@@ -52,11 +72,26 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
     }
   }, []);
 
+  /**
+   * Resizable component height state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
   const [viewerHeight, setViewerHeight] = useState(400);
+
+  /**
+   * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
+   *
+   * @param {{number}} size Updated size of Resizable component.
+   */
   const handleResize = (event, { element, size, handle }) => {
     setViewerHeight(size.height);
   };
 
+  /**
+   * Sets up the form schema adding entities present in the DasContract data model.
+   */
   const setupSchema = () => {
     const getEntities = () => {
       const superElementsArray = loadedContractJSON.elements[0].elements;
@@ -179,4 +214,17 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
     </Col>
   );
 };
+
+UserActivityFormFields.propTypes = {
+  /**
+   * Task data.
+   */
+  task: PropTypes.object.isRequired,
+
+  /**
+   * Callback to update the value of task in the parent component.
+   */
+  updateTask: PropTypes.func.isRequired,
+};
+
 export default UserActivityFormFields;

@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 //Redux
 import { connect } from "react-redux";
-import { loadContract } from "../redux/Contracts/contracts-actions";
 
 //Styles
 import { Col, Container, Row } from "react-bootstrap";
@@ -22,27 +21,104 @@ import customViewerModule from "../resources/customViewerModule";
 import dasContractDescriptor from "../resources/metamodel/dascontract.json";
 
 //Other
+import PropTypes from "prop-types";
 
+/**
+ * Displays the loaded contract process model. Changes are not saved.
+ *
+ * @component
+ */
 const ProcessViewer = ({ loadedContract, defaultViewerHeight }) => {
   //Viewer
   let moddle, modeling;
+
+  /**
+   * Process modeler object reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const modelerRef = useRef();
 
+  /**
+   * Process viewer container HTML element reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const processViewerContainerRef = useRef();
+
+  /**
+   * Canvas HTML element for modeler reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const canvasRef = useRef();
+
+  /**
+   * Properties panel HTML element for modeler reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const propertiesPanelRef = useRef();
 
+  /**
+   * Editor's taken columns state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
   const [editorSM, setEditorSM] = useState(12);
+
+  /**
+   * Resizable component height state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
   const [viewerHeight, setViewerHeight] = useState(defaultViewerHeight);
-  const handleResize = (event, { element, size, handle }) => {
+
+  /**
+   * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
+   *
+   * @param {{number}} size Updated size of Resizable component.
+   */
+  const handleResize = ({ size }) => {
     setViewerHeight(size.height);
   };
 
   //File load
+  /**
+   * Import error indicator state hook.
+   * @constant
+   *
+   * @type {[boolean, function]}
+   */
   const [importError, setImportError] = useState(false);
+
+  /**
+   * Successful import indicator state hook.
+   * @constant
+   *
+   * @type {[boolean, function]}
+   */
   const [successfulImport, setSuccessfulImport] = useState(false);
+
+  /**
+   * Problem cause description state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
   const [problemCause, setProblemCause] = useState();
 
+  /**
+   * Attempts to open a diagram in XML with process modeler.
+   *
+   * @param {string} xml
+   */
   const openDiagram = (xml) => {
     setEditorSM(12);
 
@@ -154,6 +230,18 @@ const mapStateToProps = (state) => {
   return {
     loadedContract: state.contracts.loadedContract,
   };
+};
+
+ProcessViewer.propTypes = {
+  /**
+   * Loaded contract from store.
+   */
+  loadedContract: PropTypes.object.isRequired,
+
+  /**
+   * App started indicator from store.
+   */
+  defaultViewerHeight: PropTypes.number,
 };
 
 export default connect(mapStateToProps)(ProcessViewer);

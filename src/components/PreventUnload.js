@@ -9,6 +9,11 @@ import { useEffect } from "react";
 
 //Other
 
+/**
+ * Prevents unload of the window if appStarted === true
+ *
+ * @component
+ */
 const PreventUnload = () => {
   useEffect(() => {
     window.addEventListener("beforeunload", promptUser);
@@ -18,6 +23,11 @@ const PreventUnload = () => {
     };
   }, []);
 
+  /**
+   * Prompts user to confirm unload.
+   *
+   * @param {Object} event Triggered event.
+   */
   const promptUser = (e) => {
     e.preventDefault();
     e.returnValue = "";

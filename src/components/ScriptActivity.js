@@ -15,6 +15,7 @@ import { Resizable } from "react-resizable";
 import CodeMirror from "@uiw/react-codemirror";
 
 //Other
+import PropTypes from "prop-types";
 
 /**
  * Script activity. It provides a code editor to add a script.
@@ -22,7 +23,10 @@ import CodeMirror from "@uiw/react-codemirror";
  */
 const ScriptActivity = ({ task, updateTask }) => {
   /**
+   * Script state hook.
+   * @constant
    *
+   * @type {[string, function]}
    */
   const [script, setScript] = useState("");
 
@@ -31,8 +35,20 @@ const ScriptActivity = ({ task, updateTask }) => {
       setScript(task.attributes["dascontract:activity-properties"]);
   }, []);
 
+  /**
+   * Resizable height component state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
   const [viewerHeight, setViewerHeight] = useState(400);
-  const handleResize = (event, { element, size, handle }) => {
+
+  /**
+   * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
+   * 
+   * @param {{number}} size Updated size of Resizable component.
+   */
+  const handleResize = ({ size }) => {
     setViewerHeight(size.height);
   };
 
@@ -75,4 +91,17 @@ const ScriptActivity = ({ task, updateTask }) => {
     </Col>
   );
 };
+
+ScriptActivity.propTypes = {
+  /**
+   * Task data.
+   */
+  task: PropTypes.object.isRequired,
+
+  /**
+   * Callback to update the value of task in the parent component.
+   */
+  updateTask: PropTypes.func.isRequired,
+};
+
 export default ScriptActivity;

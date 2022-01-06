@@ -10,12 +10,38 @@ import { Button, Modal, Nav } from "react-bootstrap";
 //Styles
 
 //Other
+import PropTypes from "prop-types";
 
+/**
+ * Modal to prevent user from leaving page without saving.
+ *
+ * @component
+ */
 const SaveChangesModal = ({ context, toggleModalButtonRef, url, callback }) => {
+  /**
+   * Link reference hook to be used by parent component.
+   * @constant
+   *
+   * @type {Object}
+   */
   const linkRef = useRef();
 
+  /**
+   * Show modal state hook.
+   * @constant
+   *
+   * @type {[boolean, function]}
+   */
   const [showModal, setShowModal] = useState(false);
+
+  /**
+   * Hides modal on close.
+   */
   const handleClose = () => setShowModal(false);
+
+  /**
+   * Handles show modal.
+   */
   const handleShow = () => setShowModal(true);
 
   return (
@@ -69,6 +95,28 @@ const SaveChangesModal = ({ context, toggleModalButtonRef, url, callback }) => {
       </Modal>
     </div>
   );
+};
+
+SaveChangesModal.propTypes = {
+  /**
+   * Context where modal is called.
+   */
+  context: PropTypes.string.isRequired,
+
+  /**
+   * Reference to toggle modal by parent component.
+   */
+  toggleModalButtonRef: PropTypes.object.isRequired,
+
+  /**
+   * URL to redirect to if user decides to leave current page.
+   */
+  url: PropTypes.string,
+
+  /**
+   * Callback function to execute if user attempts to replace the diagram.
+   */
+  callback: PropTypes.func,
 };
 
 export default SaveChangesModal;

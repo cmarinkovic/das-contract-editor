@@ -17,6 +17,7 @@ import PropTypes from "prop-types";
 
 /**
  * Provides an introduction or instructions for the user depending on appStarted.
+ * 
  * @component
  */
 const Home = ({ loadedContract, appStarted, startApp }) => {

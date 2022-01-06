@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> DataModel.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="ActivityDasContractProperties.html">ActivityDasContractProperties</a></li><li><a href="BusinessRuleActivity.html">BusinessRuleActivity</a></li><li><a href="DataModel.html">DataModel</a></li><li><a href="DataModelArrayFieldTemplate.html">DataModelArrayFieldTemplate</a></li><li><a href="DataModelFormFields.html">DataModelFormFields</a></li><li><a href="Home.html">Home</a></li><li><a href="Instructions.html">Instructions</a></li><li><a href="Introduction.html">Introduction</a></li><li><a href="NavbarImpl.html">NavbarImpl</a></li><li><a href="NavItems.html">NavItems</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="NoTypeActivity.html">NoTypeActivity</a></li><li><a href="PreventUnload.html">PreventUnload</a></li><li><a href="ProcessEditor.html">ProcessEditor</a></li><li><a href="ProcessViewer.html">ProcessViewer</a></li><li><a href="SaveChangesModal.html">SaveChangesModal</a></li><li><a href="SavedToast.html">SavedToast</a></li><li><a href="ScriptActivity.html">ScriptActivity</a></li><li><a href="UserActivityArrayFieldTemplate.html">UserActivityArrayFieldTemplate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FormDataStateContext">FormDataStateContext</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>DataModel.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//React
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "@reach/router";
+
+//Components
+import DataModelFormFields from "./DataModelFormFields";
+import ProcessViewer from "./ProcessViewer";
+import SavedToast from "./SavedToast";
+import PreventUnload from "./PreventUnload";
+
+//Redux
+import { connect } from "react-redux";
+import { loadContract } from "../redux/Contracts/contracts-actions";
+
+//Styles
+import { Container, Row } from "react-bootstrap";
+
+//Other
+import convert from "xml-js";
+
+/**
+ * Enables editing the DasContract data model. Shows a process viewer for reference.
+ *
+ * @component
+ */
+const DataModel = ({
+  appStarted,
+  loadedContract,
+  loadContract,
+  loadContractError,
+}) => {
+  //Data load
+  /**
+   * Loaded contract in JSON format state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
+  let [loadedContractJSON, setLoadedContractJSON] = useState();
+
+  useEffect(() => {
+    if (loadedContract &amp;&amp; !loadContractError) {
+      setLoadedContractJSON(
+        JSON.parse(
+          convert.xml2json(loadedContract.xml, {
+            compact: false,
+            spaces: 4,
+          })
+        )
+      );
+    }
+    redirectIfNotReady();
+  }, []);
+
+  const navigate = useNavigate();
+
+  /**
+   * Redirects the user to "Home" if there's no loaded contract or a load contract error.
+   */
+  const redirectIfNotReady = () => {
+    if (!appStarted) {
+      navigate("/");
+    } else if (!loadedContract || loadContractError) {
+      navigate("/process-editor");
+    }
+  };
+
+  //Data manipulation
+  /**
+   * Model elements state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
+  const [modelElements, setModelElements] = useState();
+
+  useEffect(() => {
+    loadedContractJSON &amp;&amp; filterRootProcess();
+  }, [loadedContractJSON]);
+
+  /**
+   * Filters processes from "loadedContractJSON" in a destructured array and sets result to "modelElements".
+   */
+  const filterRootProcess = () => {
+    const elementsArr = loadedContractJSON.elements[0].elements;
+
+    const rootProcess = elementsArr.filter((element) => {
+      return element.name === "bpmn2:process";
+    });
+
+    const otherElements = elementsArr.filter((element) => {
+      return element.name !== "bpmn2:process";
+    });
+
+    setModelElements([rootProcess, otherElements]);
+  };
+
+  /**
+   * Updated a process data model.
+   * 
+   * @param {Object} modelElementToUpdate Model element to update in "modelElements".
+   * @param {Object} newData New data for the model element to update.
+   */
+  const updateProcess = (modelElementToUpdate, newData) => {
+    let newModelElements;
+
+    newModelElements = [...modelElements];
+
+    newModelElements.forEach((newModelElementType) => {
+      newModelElementType.forEach((newModelElement) => {
+        if (
+          newModelElement.attributes.id === modelElementToUpdate.attributes.id
+        ) {
+          newModelElement.attributes["dascontract:data-model"] = newData;
+        }
+      });
+    });
+
+    setModelElements(newModelElements);
+
+    if (loadedContractJSON) {
+      const jointModelElementTypes = [];
+
+      modelElements.forEach((modelElementType) => {
+        jointModelElementTypes.push(...modelElementType);
+      });
+
+      const newLoadedContractJSON = loadedContractJSON;
+
+      newLoadedContractJSON.elements[0].elements = jointModelElementTypes;
+
+      setLoadedContractJSON(newLoadedContractJSON);
+
+      updateLoadedContract();
+    }
+  };
+
+  /**
+   * Toggle saved modal reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
+  const toggleSavedToastRef = useRef(() => {});
+
+  /**
+   * Updates "loadedContract" from the store with the data in "loadedContractJSON".
+   */
+  const updateLoadedContract = () => {
+    const newXML = convert.json2xml(loadedContractJSON, {
+      compact: false,
+      spaces: 4,
+    });
+
+    loadContract({
+      ...loadedContract,
+      xml: newXML,
+    });
+
+    toggleSavedToastRef.current();
+  };
+
+  return (
+    &lt;Container className={`${loadContractError &amp;&amp; "d-none"}`} fluid={true}>
+      {appStarted &amp;&amp; &lt;PreventUnload />}
+      {appStarted &amp;&amp; &lt;SavedToast toggle={toggleSavedToastRef} ms={5000} />}
+
+      &lt;ProcessViewer />
+
+      &lt;Row className="mt-2">
+        {modelElements &amp;&amp;
+          modelElements[0].map((process) => {
+            return (
+              &lt;DataModelFormFields
+                key={process.attributes.id}
+                process={process}
+                updateProcess={updateProcess}
+              />
+            );
+          })}
+      &lt;/Row>
+    &lt;/Container>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    appStarted: state.ui.appStarted,
+    loadedContract: state.contracts.loadedContract,
+    loadContractError: state.contracts.loadContractError,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadContract: (contract) => dispatch(loadContract(contract)),
+  };
+};
+
+DataModel.propTypes = {
+  /**
+   * App started indicator from store.
+   */
+  appStarted: PropTypes.bool,
+
+  /**
+   * Loaded contract from store.
+   */
+  loadedContract: PropTypes.object,
+
+  /**
+   * Action to load a contract in the store.
+   */
+  loadContract: PropTypes.func.isRequired,
+
+  /**
+   * Load contract error indicator from store.
+   */
+  loadContractError: PropTypes.bool,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataModel);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

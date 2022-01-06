@@ -16,9 +16,9 @@ import PropTypes from "prop-types";
 
 /**
  *  Navbar items.
+ *
  * @component
  */
-
 const NavItems = ({ loadedContract }) => {
   /**
    * Toggle modal button reference hook.
@@ -94,9 +94,9 @@ const NavItems = ({ loadedContract }) => {
           </Nav>
         ) : (
           <Nav className="me-auto">
-            <Link to="/">
-              <Nav.Link>Home</Nav.Link>
-            </Link>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
           </Nav>
         )}
       </Navbar.Collapse>

@@ -15,12 +15,28 @@ import {
   faPlus,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 //Other
+import PropTypes from "prop-types";
 
+/**
+ * A user activity ArrayFieldTemplate for react-jsonschema-form.
+ *
+ * @component
+ */
 const UserActivityArrayFieldTemplate = (props) => {
+  /**
+   * Form data from FormDataStateContext.Provider.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
   const [formData, setFormData] = useContext(FormDataStateContext);
 
+  /**
+   * Updates "formDate" on item add.
+   */
   const handleAddItem = () => {
     setFormData([
       ...formData,
@@ -35,6 +51,11 @@ const UserActivityArrayFieldTemplate = (props) => {
     ]);
   };
 
+  /**
+   * Finds the highest among all objects inside an array of objects.
+   *
+   * @returns {number} Highest id found.
+   */
   const findHighestId = () => {
     let highest = 0;
 
@@ -106,4 +127,12 @@ const UserActivityArrayFieldTemplate = (props) => {
     </>
   );
 };
+
+UserActivityArrayFieldTemplate.propTypes = {
+  /**
+   * Props coming form "SchemaForm" component.
+   */
+  props: propTypes.object.isRequired,
+};
+
 export default UserActivityArrayFieldTemplate;

@@ -13,6 +13,7 @@ import { Container, Navbar } from "react-bootstrap";
 
 /**
  * Navbar wrapper. "NavbarImpl" is used to avoid confict with react-bootstrap component.
+ *
  * @component
  */
 const NavbarImpl = () => {

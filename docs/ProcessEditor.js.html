@@ -1,4 +1,95 @@
-//React
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> ProcessEditor.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="ActivityDasContractProperties.html">ActivityDasContractProperties</a></li><li><a href="BusinessRuleActivity.html">BusinessRuleActivity</a></li><li><a href="DataModel.html">DataModel</a></li><li><a href="DataModelArrayFieldTemplate.html">DataModelArrayFieldTemplate</a></li><li><a href="DataModelFormFields.html">DataModelFormFields</a></li><li><a href="Home.html">Home</a></li><li><a href="Instructions.html">Instructions</a></li><li><a href="Introduction.html">Introduction</a></li><li><a href="NavbarImpl.html">NavbarImpl</a></li><li><a href="NavItems.html">NavItems</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="NoTypeActivity.html">NoTypeActivity</a></li><li><a href="PreventUnload.html">PreventUnload</a></li><li><a href="ProcessEditor.html">ProcessEditor</a></li><li><a href="ProcessViewer.html">ProcessViewer</a></li><li><a href="SaveChangesModal.html">SaveChangesModal</a></li><li><a href="SavedToast.html">SavedToast</a></li><li><a href="ScriptActivity.html">ScriptActivity</a></li><li><a href="UserActivityArrayFieldTemplate.html">UserActivityArrayFieldTemplate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FormDataStateContext">FormDataStateContext</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>ProcessEditor.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//React
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "@reach/router";
 
@@ -127,9 +218,9 @@ const ProcessEditor = ({
    * @param {Object} event Triggering event.
    */
   const handleKeyDown = (e) => {
-    if (e.ctrlKey && e.shiftKey && (e.key === "Z" || e.key === "z")) {
+    if (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; (e.key === "Z" || e.key === "z")) {
       commandStackRef.current.redo();
-    } else if (e.ctrlKey && (e.key === "Z" || e.key === "z")) {
+    } else if (e.ctrlKey &amp;&amp; (e.key === "Z" || e.key === "z")) {
       commandStackRef.current.undo();
     }
   };
@@ -236,7 +327,7 @@ const ProcessEditor = ({
 
         commandStackRef.current = modelerRef.current.get("commandStack");
 
-        loadedContract && setFileName(loadedContract.fileName);
+        loadedContract &amp;&amp; setFileName(loadedContract.fileName);
 
         setSuccessfulImport(true);
         setLoadContractErrorResult(false);
@@ -451,132 +542,132 @@ const ProcessEditor = ({
 
   //TODO: Markup can be modified for react-bootstrap.
   return (
-    <Container
+    &lt;Container
       fluid={true}
       {...getRootProps({ className: "dropzone" })}
       onKeyDown={handleKeyDown}
     >
-      <input {...getInputProps()} />
+      &lt;input {...getInputProps()} />
 
-      {appStarted && <PreventUnload />}
-      {appStarted && (
-        <SavedToast
+      {appStarted &amp;&amp; &lt;PreventUnload />}
+      {appStarted &amp;&amp; (
+        &lt;SavedToast
           toggle={toggleSavedToastRef}
           ms={5000}
           fileName={fileName}
         />
       )}
-      {appStarted && (
-        <SaveChangesModal
+      {appStarted &amp;&amp; (
+        &lt;SaveChangesModal
           context="replaceDiagram"
           toggleModalButtonRef={toggleModalButtonRef}
           callback={onDropAccepted}
         />
       )}
 
-      <a ref={linkSaveXMLRef} className="hidden" target="_blank" />
-      <a ref={linkSaveSVGRef} className="hidden" target="_blank" />
+      &lt;a ref={linkSaveXMLRef} className="hidden" target="_blank" />
+      &lt;a ref={linkSaveSVGRef} className="hidden" target="_blank" />
 
-      <Resizable height={viewerHeight} onResize={handleResize}>
-        <Row
+      &lt;Resizable height={viewerHeight} onResize={handleResize}>
+        &lt;Row
           ref={processEditorContainerRef}
-          className={`process-container ${importError && "with-import-error"} ${
-            successfulImport && "with-diagram"
+          className={`process-container ${importError &amp;&amp; "with-import-error"} ${
+            successfulImport &amp;&amp; "with-diagram"
           }`}
           style={{ height: viewerHeight + "px" }}
         >
-          <Col sm={editorSM}>
-            <div className="message intro">
-              <div className="px-4 py-5 my-5 text-center">
-                <div className="col-lg-6 mx-auto">
-                  <p className="lead mb-4 note">
+          &lt;Col sm={editorSM}>
+            &lt;div className="message intro">
+              &lt;div className="px-4 py-5 my-5 text-center">
+                &lt;div className="col-lg-6 mx-auto">
+                  &lt;p className="lead mb-4 note">
                     Drop a DasContract file from your desktop or
-                    <span
+                    &lt;span
                       className="link-primary"
                       style={{ cursor: "pointer" }}
                       onClick={createNewDiagram}
                     >
                       {" "}
                       create a new model{" "}
-                    </span>
+                    &lt;/span>
                     to get started.
-                  </p>
-                </div>
-              </div>
-            </div>
+                  &lt;/p>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
 
-            <div className="message import-error">
-              <div className="px-4 py-5 my-5 text-center">
-                <div className="col-lg-6 mx-auto">
-                  <div className="lead mb-4 note">
-                    <p>
+            &lt;div className="message import-error">
+              &lt;div className="px-4 py-5 my-5 text-center">
+                &lt;div className="col-lg-6 mx-auto">
+                  &lt;div className="lead mb-4 note">
+                    &lt;p>
                       Ooops, we could not display the DasContract model. Drop a
                       new file or{" "}
-                      <span
+                      &lt;span
                         className="link-primary"
                         style={{ cursor: "pointer" }}
                         onClick={createNewDiagram}
                       >
                         {" "}
                         create a new model{" "}
-                      </span>
+                      &lt;/span>
                       to get started.
-                    </p>
-                  </div>
+                    &lt;/p>
+                  &lt;/div>
 
-                  <div
-                    className={`${!problemCause && "d-none"} lead mb-4 note`}
+                  &lt;div
+                    className={`${!problemCause &amp;&amp; "d-none"} lead mb-4 note`}
                   >
-                    <span>Cause of the problem: </span>
-                    <pre>{problemCause}</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    &lt;span>Cause of the problem: &lt;/span>
+                    &lt;pre>{problemCause}&lt;/pre>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
 
-            <div
+            &lt;div
               ref={canvasRef}
               className="canvas"
               style={{ height: viewerHeight + "px" }}
             />
-          </Col>
+          &lt;/Col>
 
-          <Col
-            className={`${(!successfulImport || importError) && "d-none"}`}
+          &lt;Col
+            className={`${(!successfulImport || importError) &amp;&amp; "d-none"}`}
             sm="3"
           >
-            <div
+            &lt;div
               ref={propertiesPanelRef}
               id="properties-panel"
               className="properties-panel-parent"
               style={{ height: viewerHeight + "px" }}
             />
-          </Col>
-        </Row>
-      </Resizable>
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/Resizable>
 
-      <ButtonGroup
+      &lt;ButtonGroup
         className={`${
-          (!successfulImport || importError) && "d-none"
+          (!successfulImport || importError) &amp;&amp; "d-none"
         } save-buttons m-2`}
       >
-        <Button variant="outline-secondary" size="m" onClick={saveModel}>
-          <FontAwesomeIcon icon={faSave} />
-        </Button>
-        <Button variant="outline-secondary" size="m" onClick={saveXML}>
-          <FontAwesomeIcon icon={faDownload} /> XML
-        </Button>
-        <Button variant="outline-secondary" size="m" onClick={saveSVG}>
-          <FontAwesomeIcon icon={faDownload} /> SVG
-        </Button>
-        <Button variant="outline-secondary" size="m" onClick={handleUndo}>
-          <FontAwesomeIcon icon={faUndo} />
-        </Button>
-        <Button variant="outline-secondary" size="m" onClick={handleRedo}>
-          <FontAwesomeIcon icon={faRedo} />
-        </Button>
-      </ButtonGroup>
-    </Container>
+        &lt;Button variant="outline-secondary" size="m" onClick={saveModel}>
+          &lt;FontAwesomeIcon icon={faSave} />
+        &lt;/Button>
+        &lt;Button variant="outline-secondary" size="m" onClick={saveXML}>
+          &lt;FontAwesomeIcon icon={faDownload} /> XML
+        &lt;/Button>
+        &lt;Button variant="outline-secondary" size="m" onClick={saveSVG}>
+          &lt;FontAwesomeIcon icon={faDownload} /> SVG
+        &lt;/Button>
+        &lt;Button variant="outline-secondary" size="m" onClick={handleUndo}>
+          &lt;FontAwesomeIcon icon={faUndo} />
+        &lt;/Button>
+        &lt;Button variant="outline-secondary" size="m" onClick={handleRedo}>
+          &lt;FontAwesomeIcon icon={faRedo} />
+        &lt;/Button>
+      &lt;/ButtonGroup>
+    &lt;/Container>
   );
 };
 
@@ -623,3 +714,32 @@ ProcessEditor.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProcessEditor);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

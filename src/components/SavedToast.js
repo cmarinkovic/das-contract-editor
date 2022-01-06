@@ -13,25 +13,31 @@ import PropTypes from "prop-types";
 
 /**
  * Toast to display when user saves model.
- * @property {boolean} show
- * @property {function} setShow Setter for "show".
- * @property {function} useEffect
+ *
+ * @component
  */
-
 const SavedToast = ({ toggle, ms, fileName }) => {
   /**
-   * Toggle modal button reference hook.
+   * Show modal state hook.
    * @constant
    *
-   * @type {Object}
+   * @type {[boolean, function]}
    */
   const [show, setShow] = useState(false);
+
+  /**
+   * Toggles the state of "show"
+   *
+   */
   const toggleShow = () => setShow(!show);
 
   useEffect(() => {
     toggle.current = showToast;
   }, []);
 
+  /**
+   * Shows the toast for the seconds specified by "ms" prop.
+   */
   const showToast = () => {
     setShow(true);
 

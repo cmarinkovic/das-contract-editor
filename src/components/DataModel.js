@@ -18,6 +18,11 @@ import { Container, Row } from "react-bootstrap";
 //Other
 import convert from "xml-js";
 
+/**
+ * Enables editing the DasContract data model. Shows a process viewer for reference.
+ *
+ * @component
+ */
 const DataModel = ({
   appStarted,
   loadedContract,
@@ -25,6 +30,12 @@ const DataModel = ({
   loadContractError,
 }) => {
   //Data load
+  /**
+   * Loaded contract in JSON format state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
   let [loadedContractJSON, setLoadedContractJSON] = useState();
 
   useEffect(() => {
@@ -43,6 +54,9 @@ const DataModel = ({
 
   const navigate = useNavigate();
 
+  /**
+   * Redirects the user to "Home" if there's no loaded contract or a load contract error.
+   */
   const redirectIfNotReady = () => {
     if (!appStarted) {
       navigate("/");
@@ -52,12 +66,21 @@ const DataModel = ({
   };
 
   //Data manipulation
+  /**
+   * Model elements state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
   const [modelElements, setModelElements] = useState();
 
   useEffect(() => {
     loadedContractJSON && filterRootProcess();
   }, [loadedContractJSON]);
 
+  /**
+   * Filters processes from "loadedContractJSON" in a destructured array and sets result to "modelElements".
+   */
   const filterRootProcess = () => {
     const elementsArr = loadedContractJSON.elements[0].elements;
 
@@ -72,6 +95,12 @@ const DataModel = ({
     setModelElements([rootProcess, otherElements]);
   };
 
+  /**
+   * Updated a process data model.
+   * 
+   * @param {Object} modelElementToUpdate Model element to update in "modelElements".
+   * @param {Object} newData New data for the model element to update.
+   */
   const updateProcess = (modelElementToUpdate, newData) => {
     let newModelElements;
 
@@ -106,8 +135,17 @@ const DataModel = ({
     }
   };
 
+  /**
+   * Toggle saved modal reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
   const toggleSavedToastRef = useRef(() => {});
 
+  /**
+   * Updates "loadedContract" from the store with the data in "loadedContractJSON".
+   */
   const updateLoadedContract = () => {
     const newXML = convert.json2xml(loadedContractJSON, {
       compact: false,
@@ -157,4 +195,27 @@ const mapDispatchToProps = (dispatch) => {
     loadContract: (contract) => dispatch(loadContract(contract)),
   };
 };
+
+DataModel.propTypes = {
+  /**
+   * App started indicator from store.
+   */
+  appStarted: PropTypes.bool,
+
+  /**
+   * Loaded contract from store.
+   */
+  loadedContract: PropTypes.object,
+
+  /**
+   * Action to load a contract in the store.
+   */
+  loadContract: PropTypes.func.isRequired,
+
+  /**
+   * Load contract error indicator from store.
+   */
+  loadContractError: PropTypes.bool,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(DataModel);

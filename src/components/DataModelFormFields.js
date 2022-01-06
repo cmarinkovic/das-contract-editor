@@ -19,10 +19,36 @@ import { javascript } from "@codemirror/lang-javascript";
 
 //Other
 import SchemaForm from "@rjsf/bootstrap-4";
+import PropTypes from "prop-types";
 
+/**
+ * Enables to edit the DasContract data model by form fields provided through react-jsonschema-form.
+ *
+ * @component
+ */
 const DataModelFormFields = ({ process, updateProcess }) => {
+  /**
+   * Form schema state hook.
+   * @constant
+   *
+   * @type {[Object, function]}
+   */
   const [schema, setSchema] = useState({});
+
+  /**
+   * Form UI schema state hook.
+   * @constant
+   *
+   * @type {[Object, function]}
+   */
   const [uiSchema, setUiSchema] = useState({});
+
+  /**
+   * Form data state hook.
+   * @constant
+   *
+   * @type {Array}
+   */
   const [formData, setFormData] = useState([]);
 
   useEffect(() => {
@@ -136,7 +162,19 @@ const DataModelFormFields = ({ process, updateProcess }) => {
     });
   }, []);
 
+  /**
+   * Resizable component height state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
   const [viewerHeight, setViewerHeight] = useState(400);
+
+  /**
+   * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
+   *
+   * @param {{number}} size Updated size of Resizable component.
+   */
   const handleResize = (event, { element, size, handle }) => {
     setViewerHeight(size.height);
   };
@@ -195,4 +233,17 @@ const DataModelFormFields = ({ process, updateProcess }) => {
     </Col>
   );
 };
+
+DataModelFormFields.propTypes = {
+  /**
+   * Process data.
+   */
+  process: PropTypes.object.isRequired,
+
+  /**
+   * Callback to update the value of process in the parent component.
+   */
+  updateProcess: PropTypes.func.isRequired,
+};
+
 export default DataModelFormFields;

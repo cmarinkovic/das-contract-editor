@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> ProcessViewer.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="ActivityDasContractProperties.html">ActivityDasContractProperties</a></li><li><a href="BusinessRuleActivity.html">BusinessRuleActivity</a></li><li><a href="DataModel.html">DataModel</a></li><li><a href="DataModelArrayFieldTemplate.html">DataModelArrayFieldTemplate</a></li><li><a href="DataModelFormFields.html">DataModelFormFields</a></li><li><a href="Home.html">Home</a></li><li><a href="Instructions.html">Instructions</a></li><li><a href="Introduction.html">Introduction</a></li><li><a href="NavbarImpl.html">NavbarImpl</a></li><li><a href="NavItems.html">NavItems</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="NoTypeActivity.html">NoTypeActivity</a></li><li><a href="PreventUnload.html">PreventUnload</a></li><li><a href="ProcessEditor.html">ProcessEditor</a></li><li><a href="ProcessViewer.html">ProcessViewer</a></li><li><a href="SaveChangesModal.html">SaveChangesModal</a></li><li><a href="SavedToast.html">SavedToast</a></li><li><a href="ScriptActivity.html">ScriptActivity</a></li><li><a href="UserActivityArrayFieldTemplate.html">UserActivityArrayFieldTemplate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FormDataStateContext">FormDataStateContext</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>ProcessViewer.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//React
+import React, { useEffect, useRef, useState } from "react";
+
+//Components
+
+//Redux
+import { connect } from "react-redux";
+
+//Styles
+import { Col, Container, Row } from "react-bootstrap";
+import { Resizable } from "react-resizable";
+
+//Viewer
+import BpmnModeler from "bpmn-js/lib/Modeler";
+import propertiesPanelModule from "bpmn-js-properties-panel";
+import minimapModule from "diagram-js-minimap";
+import bpmnlintConfig from "../bpmnlinter-config";
+
+//DasContract customization
+import customViewerModule from "../resources/customViewerModule";
+import dasContractDescriptor from "../resources/metamodel/dascontract.json";
+
+//Other
+import PropTypes from "prop-types";
+
+/**
+ * Displays the loaded contract process model. Changes are not saved.
+ *
+ * @component
+ */
+const ProcessViewer = ({ loadedContract, defaultViewerHeight }) => {
+  //Viewer
+  let moddle, modeling;
+
+  /**
+   * Process modeler object reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
+  const modelerRef = useRef();
+
+  /**
+   * Process viewer container HTML element reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
+  const processViewerContainerRef = useRef();
+
+  /**
+   * Canvas HTML element for modeler reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
+  const canvasRef = useRef();
+
+  /**
+   * Properties panel HTML element for modeler reference hook.
+   * @constant
+   *
+   * @type {Object}
+   */
+  const propertiesPanelRef = useRef();
+
+  /**
+   * Editor's taken columns state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
+  const [editorSM, setEditorSM] = useState(12);
+
+  /**
+   * Resizable component height state hook.
+   * @constant
+   *
+   * @type {[number, function]}
+   */
+  const [viewerHeight, setViewerHeight] = useState(defaultViewerHeight);
+
+  /**
+   * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
+   *
+   * @param {{number}} size Updated size of Resizable component.
+   */
+  const handleResize = ({ size }) => {
+    setViewerHeight(size.height);
+  };
+
+  //File load
+  /**
+   * Import error indicator state hook.
+   * @constant
+   *
+   * @type {[boolean, function]}
+   */
+  const [importError, setImportError] = useState(false);
+
+  /**
+   * Successful import indicator state hook.
+   * @constant
+   *
+   * @type {[boolean, function]}
+   */
+  const [successfulImport, setSuccessfulImport] = useState(false);
+
+  /**
+   * Problem cause description state hook.
+   * @constant
+   *
+   * @type {[string, function]}
+   */
+  const [problemCause, setProblemCause] = useState();
+
+  /**
+   * Attempts to open a diagram in XML with process modeler.
+   *
+   * @param {string} xml
+   */
+  const openDiagram = (xml) => {
+    setEditorSM(12);
+
+    modelerRef.current
+      .importXML(xml)
+      .then(() => {
+        moddle = modelerRef.current.get("moddle");
+        modeling = modelerRef.current.get("modeling");
+
+        setEditorSM(9);
+        setViewerHeight(processViewerContainerRef.current.clientHeight);
+
+        setSuccessfulImport(true);
+        setImportError(false);
+      })
+      .catch((err) => {
+        setSuccessfulImport(false);
+        setImportError(true);
+        setProblemCause(err.message);
+      });
+  };
+
+  useEffect(() => {
+    modelerRef.current = new BpmnModeler({
+      container: canvasRef.current,
+      linting: {
+        bpmnlint: bpmnlintConfig,
+      },
+      additionalModules: [
+        customViewerModule,
+        propertiesPanelModule,
+        minimapModule,
+      ],
+      moddleExtensions: {
+        dascontract: dasContractDescriptor,
+      },
+      propertiesPanel: {
+        parent: propertiesPanelRef.current,
+      },
+    });
+
+    if (loadedContract) {
+      openDiagram(loadedContract.xml);
+    }
+
+    return () => {
+      modelerRef.current.destroy();
+    };
+  }, [successfulImport, importError]);
+
+  useEffect(() => {
+    if (loadedContract) {
+      openDiagram(loadedContract.xml);
+    }
+  }, [loadedContract]);
+
+  //TODO: Markup can be modified for react-bootstrap.
+  return (
+    &lt;Container fluid={true}>
+      &lt;Resizable height={viewerHeight} onResize={handleResize}>
+        &lt;Row
+          ref={processViewerContainerRef}
+          className={`viewer-process-container ${
+            importError &amp;&amp; "with-import-error"
+          } ${successfulImport &amp;&amp; "with-diagram"}`}
+          style={{ height: viewerHeight + "px" }}
+        >
+          &lt;Col sm={editorSM}>
+            &lt;div className="message import-error">
+              &lt;div className="px-4 py-5 my-5 text-center">
+                &lt;div className="col-lg-6 mx-auto">
+                  &lt;p className="lead mb-4 note">
+                    Ooops, we could not display the DasContract model.
+                  &lt;/p>
+                  &lt;div
+                    className={`${!problemCause &amp;&amp; "d-none"} lead mb-4 note`}
+                  >
+                    &lt;span>Cause of the problem: &lt;/span>
+                    &lt;pre>{problemCause}&lt;/pre>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+
+            &lt;div
+              ref={canvasRef}
+              className="viewer-canvas"
+              style={{ height: viewerHeight + "px" }}
+            />
+          &lt;/Col>
+          &lt;Col
+            className={`${(!successfulImport || importError) &amp;&amp; "d-none"}`}
+            sm="3"
+          >
+            &lt;div
+              ref={propertiesPanelRef}
+              id="properties-panel"
+              className="properties-panel-parent"
+              style={{ height: viewerHeight + "px" }}
+            />
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/Resizable>
+    &lt;/Container>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    loadedContract: state.contracts.loadedContract,
+  };
+};
+
+ProcessViewer.propTypes = {
+  /**
+   * Loaded contract from store.
+   */
+  loadedContract: PropTypes.object.isRequired,
+
+  /**
+   * App started indicator from store.
+   */
+  defaultViewerHeight: PropTypes.number,
+};
+
+export default connect(mapStateToProps)(ProcessViewer);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

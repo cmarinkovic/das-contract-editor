@@ -17,11 +17,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //Other
+import PropTypes from "prop-types";
 
+/**
+ * A data model ArrayFieldTemplate for react-jsonschema-form.
+ *
+ * @component
+ */
 const DataModelArrayFieldTemplate = (props) => {
   const [formData, setFormData] = useContext(FormDataStateContext);
 
-  const addEntity = () => {
+  /**
+   * Updates "formDate" on entity add.
+   */
+  const handleAddEntity = () => {
     setFormData([
       ...formData,
       {
@@ -30,6 +39,11 @@ const DataModelArrayFieldTemplate = (props) => {
     ]);
   };
 
+  /**
+   * Finds the highest among all objects inside an array of objects.
+   *
+   * @returns {number} Highest id found.
+   */
   const findHighestId = (arr) => {
     let highest = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -40,6 +54,12 @@ const DataModelArrayFieldTemplate = (props) => {
     return highest;
   };
 
+  /**
+   * Transforms the title value from plural to singular.
+   *
+   * @param {string} types
+   * @returns {string} Title in singular form.
+   */
   const getTitle = (types) => {
     if (types === "Primitive properties") {
       return "Primitive property";
@@ -58,10 +78,7 @@ const DataModelArrayFieldTemplate = (props) => {
             <p className="h4">{props.title}</p>
             {props.items &&
               props.items.map((element) => (
-                <Accordion.Item
-                  className={element.className}
-                  eventKey={element.key}
-                >
+                <Accordion.Item className={element.className} key={element.key}>
                   <Accordion.Header>{getTitle(props.title)}</Accordion.Header>
                   <Accordion.Body>{element.children}</Accordion.Body>
                   {element.hasMoveDown && (
@@ -103,7 +120,7 @@ const DataModelArrayFieldTemplate = (props) => {
                 variant="outline-primary"
                 onClick={() => {
                   if (props.title === "Entities") {
-                    addEntity();
+                    handleAddEntity();
                   } else if (props.title === "Primitive properties") {
                     props.onAddClick();
                   } else if (props.title === "Reference properties") {
@@ -119,6 +136,13 @@ const DataModelArrayFieldTemplate = (props) => {
       )}
     </>
   );
+};
+
+DataModelArrayFieldTemplate.propTypes = {
+  /**
+   * Props coming form "SchemaForm" component.
+   */
+  props: propTypes.object.isRequired,
 };
 
 export default DataModelArrayFieldTemplate;
