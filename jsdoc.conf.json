@@ -15,8 +15,19 @@
   },
   "plugins": ["plugins/markdown", "better-docs/component"],
   "templates": {
+    "search": true,
     "better-docs": {
-      "name": "My React components"
+      "name": "DasContract Editor",
+      "navLinks": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/cmarinkovic/das-contract-editor"
+        },
+        {
+          "label": "Deployed Application",
+          "href": "https://das-contract-editor.herokuapp.com/"
+        }
+      ]
     }
   },
   "opts": {
