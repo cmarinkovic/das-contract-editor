@@ -131,6 +131,7 @@ import { Container, Row } from "react-bootstrap";
 //Others
 import convert from "xml-js";
 import PreventUnload from "./PreventUnload";
+import PropTypes from "prop-types";
 
 /**
  * Enables editing activity DasContract properties. Shows a process viewer for reference.
@@ -201,64 +202,138 @@ const ActivityDasContractProperties = ({
     loadedContractJSON &amp;&amp; filterElements();
   }, [loadedContractJSON]);
 
+  //TODO: Split into more functions.
   /**
    * Filters tasks from "loadedContractJSON" in a destructured array and sets result to "modelElements". Sets the state of the activities presence indicator.
    */
   const filterElements = () => {
     const superElementsArr = loadedContractJSON.elements[0].elements;
 
-    const processArray = superElementsArr.filter((element) => {
+    const processArr = superElementsArr.filter((element) => {
       return element.name === "bpmn2:process";
     });
 
-    const elementsArr = processArray[0].elements;
+    /* const elementsArr = processArray[0].elements; //Only first found process elements are recovered. */
 
-    if (elementsArr) {
-      const tasksWithoutType = elementsArr.filter((element) => {
-        return element.name === "bpmn2:task";
-      });
+    const elementsWithinLanesArr = getElementsWithinLanesArr(processArr);
 
-      const userTasks = elementsArr.filter((element) => {
-        return element.name === "bpmn2:userTask";
-      });
+    /* const allElementsClassifiedArr = getAllElementsClassifiedArr(
+      elementsWithinLanesArr
+    ); */
 
-      const businessRuleTasks = elementsArr.filter((element) => {
-        return element.name === "bpmn2:businessRuleTask";
-      });
+    if (elementsWithinLanesArr) {
+      const classifiedEelementsArr = getClassifiedElementsArr(
+        elementsWithinLanesArr
+      );
 
-      const scriptTasks = elementsArr.filter((element) => {
-        return element.name === "bpmn2:scriptTask";
-      });
+      setModelElements(classifiedEelementsArr);
 
-      const otherElements = elementsArr.filter((element) => {
-        return (
-          element.name !== "bpmn2:task" &amp;&amp;
-          element.name !== "bpmn2:userTask" &amp;&amp;
-          element.name !== "bpmn2:businessRuleTask" &amp;&amp;
-          element.name !== "bpmn2:scriptTask" &amp;&amp;
-          element.name !== "bpmn2:subProcess"
-        );
-      });
-
-      setModelElements([
-        tasksWithoutType,
-        userTasks,
-        businessRuleTasks,
-        scriptTasks,
-        otherElements,
-      ]);
-
-      if (
-        tasksWithoutType.length ||
-        userTasks.length ||
-        businessRuleTasks.length ||
-        scriptTasks.length
-      ) {
-        setThereAreActivities(true);
-      }
-    } else {
-      setThereAreActivities(false);
+      classifiedEelementsArr
+        ? setThereAreActivities(true)
+        : setThereAreActivities(false);
     }
+  };
+
+  /**
+   * Gets every element within every lane.
+   * @param {Array} processArr Array of processes.
+   * @returns {Array} Every element within every lane.
+   */
+  const getElementsWithinLanesArr = (processArr) => {
+    const elementsWithinLanesArr = [];
+
+    processArr.forEach((process) => {
+      process.elements &amp;&amp;
+        process.elements.forEach((element) => {
+          elementsWithinLanesArr.push(element);
+        });
+    });
+
+    return elementsWithinLanesArr;
+  };
+
+  /**
+   * Gets every element in the process model.
+   * @param {Array} elementsWithinLanesArr Array of elements within lanes.
+   * @returns {Array} Every element in the process model.
+   */
+  const getAllElementsClassifiedArr = (elementsWithinLanesArr) => {
+    const allElementsArr = [];
+
+    allElementsArr = elementsWithinLanesArr.forEach((element) => {
+      if (element.name) {
+        if (element.name === "bpmn2:subProcess") {
+          console.log(element);
+          //allElementsArr.push(getSubProcessTreeElementsArr(element));
+        } else {
+          allElementsArr.push(element);
+        }
+      }
+    });
+
+    return allElementsArr;
+  };
+
+  /**
+   * Classifies an array of elements.
+   * @param {Array} elementsArr Array of elements.
+   * @returns {Array} "Destructured" array of elements classified.
+   */
+  const getClassifiedElementsArr = (elementsArr) => {
+    const tasksWithoutType = elementsArr.filter((element) => {
+      return element.name === "bpmn2:task";
+    });
+
+    const userTasks = elementsArr.filter((element) => {
+      return element.name === "bpmn2:userTask";
+    });
+
+    const businessRuleTasks = elementsArr.filter((element) => {
+      return element.name === "bpmn2:businessRuleTask";
+    });
+
+    const scriptTasks = elementsArr.filter((element) => {
+      return element.name === "bpmn2:scriptTask";
+    });
+
+    const otherElements = elementsArr.filter((element) => {
+      return (
+        element.name !== "bpmn2:task" &amp;&amp;
+        element.name !== "bpmn2:userTask" &amp;&amp;
+        element.name !== "bpmn2:businessRuleTask" &amp;&amp;
+        element.name !== "bpmn2:scriptTask" &amp;&amp;
+        element.name !== "bpmn2:subProcess"
+      );
+    });
+
+    return [
+      tasksWithoutType,
+      userTasks,
+      businessRuleTasks,
+      scriptTasks,
+      otherElements,
+    ];
+  };
+
+  //TODO: Implementation pending.
+  /**
+   * Gets every non-subprocess element inside a subprocess tree.
+   *
+   * @param {Array} subProcessNode Current subProcess node.
+   * @param {Array} treeElementsArr Current subProcess node.
+   * @returns {Array} Every non-subprocess element inside a subprocess tree.
+   */
+  const getSubProcessTreeElementsArr = (
+    subProcessNode,
+    treeElementsArr = []
+  ) => {
+    if (arr.length > 0) {
+    }
+
+    subProcess.elements &amp;&amp;
+      subProcessArr.filter((subProcess) => {
+        subProcess.elements;
+      });
   };
 
   /**
