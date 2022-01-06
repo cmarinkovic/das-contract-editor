@@ -659,8 +659,5 @@ CustomViewerReplaceMenuProvider.prototype._getAdHocEntry = function (element) {
     },
   };
 
-  /**
-   * Modified return value to remove menu.
-   */
-  return {};
+  return adHocEntry;
 };
