@@ -45,15 +45,18 @@ const BusinessRuleActivity = ({ task, updateTask }) => {
 
   useEffect(() => {
     if (task.attributes["dascontract:activity-properties"]) {
-      const xmlModel = convert.json2xml(
-        JSON.parse(task.attributes["dascontract:activity-properties"]),
-        {
-          compact: false,
-          spaces: 4,
-        }
-      );
+      let xmlModel;
 
-      setDmnXML(xmlModel);
+      try {
+        xmlModel = convert.json2xml(
+          JSON.parse(task.attributes["dascontract:activity-properties"]),
+          {
+            compact: false,
+            spaces: 4,
+          }
+        );
+        setDmnXML(xmlModel);
+      } catch (e) {}
     }
   }, []);
 

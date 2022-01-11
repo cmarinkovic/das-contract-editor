@@ -47,10 +47,13 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
   const [formData, setFormData] = useState([]);
 
   useEffect(() => {
-    task.attributes["dascontract:activity-properties"] &&
-      setFormData(
-        JSON.parse(task.attributes["dascontract:activity-properties"])
-      );
+    if (task.attributes["dascontract:activity-properties"]) {
+      try {
+        setFormData(
+          JSON.parse(task.attributes["dascontract:activity-properties"])
+        );
+      } catch (e) {}
+    }
 
     if (loadedContractJSON) {
       setupSchema();
