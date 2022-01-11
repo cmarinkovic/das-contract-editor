@@ -91,29 +91,28 @@ const ActivityDasContractProperties = ({
     loadedContractJSON && filterElements();
   }, [loadedContractJSON]);
 
-  //TODO: Split into more functions.
   /**
-   * Filters tasks from "loadedContractJSON" in a destructured array and sets result to "modelElements". Sets the state of the activities presence indicator.
+   * Filters elements from "loadedContractJSON" in a destructured array and sets result to "modelElements". Sets the state of the activities presence indicator.
    */
   const filterElements = () => {
     const superElementsArr = loadedContractJSON.elements[0].elements;
 
     const processArr = superElementsArr.filter((element) => {
-      return element.name === "bpmn2:process";
+      try {
+        if (element.name === "bpmn2:process") {
+          return true;
+        }
+      } catch (e) {}
     });
 
     /* const elementsArr = processArray[0].elements; //Only first found process elements are recovered. */
 
     const elementsWithinLanesArr = getElementsWithinLanesArr(processArr);
-
-    /* const allElementsClassifiedArr = getAllElementsClassifiedArr(
-      elementsWithinLanesArr
-    ); */
+    const allElementsArr = getAllElementsArr(elementsWithinLanesArr);
 
     if (elementsWithinLanesArr) {
-      const classifiedEelementsArr = getClassifiedElementsArr(
-        elementsWithinLanesArr
-      );
+      const classifiedEelementsArr =
+        getFullClassifiedElementsArr(allElementsArr);
 
       setModelElements(classifiedEelementsArr);
 
@@ -143,17 +142,17 @@ const ActivityDasContractProperties = ({
 
   /**
    * Gets every element in the process model.
+   *
    * @param {Array} elementsWithinLanesArr Array of elements within lanes.
    * @returns {Array} Every element in the process model.
    */
-  const getAllElementsClassifiedArr = (elementsWithinLanesArr) => {
+  const getAllElementsArr = (elementsWithinLanesArr) => {
     const allElementsArr = [];
 
-    allElementsArr = elementsWithinLanesArr.forEach((element) => {
+    elementsWithinLanesArr.forEach((element) => {
       if (element.name) {
         if (element.name === "bpmn2:subProcess") {
-          console.log(element);
-          //allElementsArr.push(getSubProcessTreeElementsArr(element));
+          allElementsArr.push(...getSubProcessTreeElementsArr(element));
         } else {
           allElementsArr.push(element);
         }
@@ -164,11 +163,12 @@ const ActivityDasContractProperties = ({
   };
 
   /**
-   * Classifies an array of elements.
+   * Classifies an array of elements into 5 categories.
+   *
    * @param {Array} elementsArr Array of elements.
    * @returns {Array} "Destructured" array of elements classified.
    */
-  const getClassifiedElementsArr = (elementsArr) => {
+  const getFullClassifiedElementsArr = (elementsArr) => {
     const tasksWithoutType = elementsArr.filter((element) => {
       return element.name === "bpmn2:task";
     });
@@ -204,34 +204,136 @@ const ActivityDasContractProperties = ({
     ];
   };
 
-  //TODO: Implementation pending.
   /**
    * Gets every non-subprocess element inside a subprocess tree.
    *
    * @param {Array} subProcessNode Current subProcess node.
-   * @param {Array} treeElementsArr Current subProcess node.
+   * @param {Array} treeElementsArr Array of tree elements.
    * @returns {Array} Every non-subprocess element inside a subprocess tree.
    */
   const getSubProcessTreeElementsArr = (
     subProcessNode,
     treeElementsArr = []
   ) => {
-    if (arr.length > 0) {
-    }
-
-    subProcess.elements &&
-      subProcessArr.filter((subProcess) => {
-        subProcess.elements;
-      });
+    subProcessNode.elements.forEach((element) => {
+      if (element.name !== "bpmn2:subProcess") {
+        treeElementsArr.push(element);
+      } else {
+        getSubProcessTreeElementsArr(element, treeElementsArr);
+      }
+    });
+    return treeElementsArr;
   };
 
   /**
-   * Updated a task.
+   * Updates a model element.
+   *
+   * @param {Object} modelElementToUpdate Model element to update.
+   * @param {Object} newData New data for the model element to update.
+   */
+  const updateElement = (modelElementToUpdate, newData) => {
+    updateModelElements(modelElementToUpdate, newData);
+
+    if (loadedContractJSON) {
+      const jointModelElements = joinArray(modelElements);
+
+      const newLoadedContractJSON = loadedContractJSON;
+
+      const superElementsArr = newLoadedContractJSON.elements[0].elements;
+
+      jointModelElements.forEach((newElement) => {
+        superElementsArr.forEach((element, elementIndex) => {
+          try {
+            if (
+              element.name === "bpmn2:subProcess" ||
+              element.name === "bpmn2:process"
+            ) {
+              superElementsArr[elementIndex] = updateTask(
+                newElement,
+                element,
+                element
+              );
+            }
+          } catch (e) {}
+        });
+      });
+
+      newLoadedContractJSON.elements[0].elements = superElementsArr;
+
+      setLoadedContractJSON(newLoadedContractJSON);
+
+      updateLoadedContract();
+    }
+  };
+
+  /**
+   * Updates a task from a process or subprocess.
+   *
+   * @param {Object} newTask Task to update.
+   * @param {Object} process Process or subprocess to update.
+   */
+  const updateTask = (process, newTask) => {
+    process.elements.forEach((element) => {
+      const [tasks, subProcesses, other] =
+        getMinimalClassifiedElementsArr(element);
+
+      tasks &&
+        tasks.forEach((task, taskIndex) => {
+          if (task.id === newTask.id) {
+            task.elements[taskIndex] = newTask;
+            return joinArray([tasks, subProcesses, other]);
+          }
+        });
+
+      subProcesses &&
+        subProcesses.forEach((subProcess) => {
+          return updateTask(subProcess, newTask);
+        });
+
+      return process;
+    });
+  };
+
+  /**
+   * Classifies an array of elements into 3 categories.
+   *
+   * @param {Array} elementsArr Array of elements.
+   * @returns {Array} "Destructured" array of elements classified.
+   */
+  const getMinimalClassifiedElementsArr = (elementsArr) => {
+    const tasks = elementsArr.filter((element) => {
+      return (
+        element.name === "bpmn2:task" ||
+        element.name === "bpmn2:userTask" ||
+        element.name === "bpmn2:businessRuleTask" ||
+        element.name === "bpmn2:scriptTask"
+      );
+    });
+
+    const subProcesses = elementsArr.filter((element) => {
+      return element.name === "bpmn2:subProcess";
+    });
+
+    const other = elementsArr.filter((element) => {
+      return (
+        element.name !== "bpmn2:task" &&
+        element.name !== "bpmn2:userTask" &&
+        element.name !== "bpmn2:businessRuleTask" &&
+        element.name !== "bpmn2:scriptTask" &&
+        element.name !== "bpmn2:subProcess"
+      );
+    });
+
+    return [tasks, subProcesses, other];
+  };
+
+  /**
+   * Updates an element in "modelElement".
    *
    * @param {Object} modelElementToUpdate Model element to update in "modelElements".
    * @param {Object} newData New data for the model element to update.
    */
-  const updateTask = (modelElementToUpdate, newData) => {
+  const updateModelElements = (modelElementToUpdate, newData) => {
     let newModelElements;
 
     newModelElements = [...modelElements];
@@ -248,24 +350,6 @@ const ActivityDasContractProperties = ({
     });
 
     setModelElements(newModelElements);
-
-    if (loadedContractJSON) {
-      const jointModelElementTypes = joinArray(modelElements);
-
-      const newLoadedContractJSON = loadedContractJSON;
-
-      const superElementsArray = newLoadedContractJSON.elements[0].elements;
-      const elementsArrayIndex = superElementsArray.findIndex((element) => {
-        return element.name === "bpmn2:process";
-      });
-
-      newLoadedContractJSON.elements[0].elements[elementsArrayIndex].elements =
-        jointModelElementTypes;
-
-      setLoadedContractJSON(newLoadedContractJSON);
-
-      updateLoadedContract();
-    }
   };
 
   /**
@@ -341,7 +425,7 @@ const ActivityDasContractProperties = ({
               <UserActivityFormFields
                 key={task.attributes.id}
                 task={task}
-                updateTask={updateTask}
+                updateTask={updateElement}
                 loadedContractJSON={loadedContractJSON}
               />
             );
@@ -354,7 +438,7 @@ const ActivityDasContractProperties = ({
               <ScriptActivity
                 key={task.attributes.id}
                 task={task}
-                updateTask={updateTask}
+                updateTask={updateElement}
               />
             );
           })}
@@ -367,7 +451,7 @@ const ActivityDasContractProperties = ({
               <BusinessRuleActivity
                 key={task.attributes.id}
                 task={task}
-                updateTask={updateTask}
+                updateTask={updateElement}
               />
             );
           })}

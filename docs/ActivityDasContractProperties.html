@@ -385,7 +385,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line293">line 293</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line377">line 377</a>
             </span>
         </p>
     
@@ -428,7 +428,7 @@
     
     
     <div class="description">
-        <p>Filters tasks from &quot;loadedContractJSON&quot; in a destructured array and sets result to &quot;modelElements&quot;. Sets the state of the activities presence indicator.</p>
+        <p>Filters elements from &quot;loadedContractJSON&quot; in a destructured array and sets result to &quot;modelElements&quot;. Sets the state of the activities presence indicator.</p>
     </div>
     
 
@@ -479,7 +479,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line98">line 98</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line97">line 97</a>
             </span>
         </p>
     
@@ -511,8 +511,8 @@
 
 
     
-    <h4 class="name" id="~getAllElementsClassifiedArr">
-        <a class="href-link" href="#~getAllElementsClassifiedArr">#</a>
+    <h4 class="name" id="~getAllElementsArr">
+        <a class="href-link" href="#~getAllElementsArr">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -520,7 +520,7 @@
         
         <span class="code-name">
             
-                getAllElementsClassifiedArr<span class="signature">(elementsWithinLanesArr)</span><span class="type-signature"> &rarr; {Array}</span>
+                getAllElementsArr<span class="signature">(elementsWithinLanesArr)</span><span class="type-signature"> &rarr; {Array}</span>
             
         </span>
     </h4>
@@ -688,8 +688,8 @@
 
 
     
-    <h4 class="name" id="~getClassifiedElementsArr">
-        <a class="href-link" href="#~getClassifiedElementsArr">#</a>
+    <h4 class="name" id="~getElementsWithinLanesArr">
+        <a class="href-link" href="#~getElementsWithinLanesArr">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -697,7 +697,7 @@
         
         <span class="code-name">
             
-                getClassifiedElementsArr<span class="signature">(elementsArr)</span><span class="type-signature"> &rarr; {Array}</span>
+                getElementsWithinLanesArr<span class="signature">(processArr)</span><span class="type-signature"> &rarr; {Array}</span>
             
         </span>
     </h4>
@@ -706,7 +706,184 @@
     
     
     <div class="description">
-        <p>Classifies an array of elements.</p>
+        <p>Gets every element within every lane.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>processArr</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Array of processes.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line130">line 130</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Every element within every lane.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~getFullClassifiedElementsArr">
+        <a class="href-link" href="#~getFullClassifiedElementsArr">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                getFullClassifiedElementsArr<span class="signature">(elementsArr)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Classifies an array of elements into 5 categories.</p>
     </div>
     
 
@@ -865,8 +1042,8 @@
 
 
     
-    <h4 class="name" id="~getElementsWithinLanesArr">
-        <a class="href-link" href="#~getElementsWithinLanesArr">#</a>
+    <h4 class="name" id="~getMinimalClassifiedElementsArr">
+        <a class="href-link" href="#~getMinimalClassifiedElementsArr">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -874,7 +1051,7 @@
         
         <span class="code-name">
             
-                getElementsWithinLanesArr<span class="signature">(processArr)</span><span class="type-signature"> &rarr; {Array}</span>
+                getMinimalClassifiedElementsArr<span class="signature">(elementsArr)</span><span class="type-signature"> &rarr; {Array}</span>
             
         </span>
     </h4>
@@ -883,7 +1060,7 @@
     
     
     <div class="description">
-        <p>Gets every element within every lane.</p>
+        <p>Classifies an array of elements into 3 categories.</p>
     </div>
     
 
@@ -921,7 +1098,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>processArr</code></td>
+      <td class="name"><code>elementsArr</code></td>
   
 
   <td class="type">
@@ -937,7 +1114,7 @@
 
   
 
-  <td class="description last"><p>Array of processes.</p></td>
+  <td class="description last"><p>Array of elements.</p></td>
 </tr>
 
 
@@ -985,7 +1162,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line131">line 131</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line303">line 303</a>
             </span>
         </p>
     
@@ -1016,7 +1193,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Every element within every lane.</p></div>
+    <div class='param-desc column is-7'><p>&quot;Destructured&quot; array of elements classified.</p></div>
     
     
     <div class='column is-5 has-text-left'>
@@ -1139,7 +1316,7 @@
 
   
 
-  <td class="description last"><p>Current subProcess node.</p></td>
+  <td class="description last"><p>Array of tree elements.</p></td>
 </tr>
 
 
@@ -1187,7 +1364,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line215">line 215</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line214">line 214</a>
             </span>
         </p>
     
@@ -1364,7 +1541,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line277">line 277</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line361">line 361</a>
             </span>
         </p>
     
@@ -1512,6 +1689,183 @@
 
 
     
+    <h4 class="name" id="~updateElement">
+        <a class="href-link" href="#~updateElement">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                updateElement<span class="signature">(modelElementToUpdate, newData)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Updates a model element.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>modelElementToUpdate</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Model element to update.</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>newData</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>New data for the model element to update.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line234">line 234</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="~updateLoadedContract">
         <a class="href-link" href="#~updateLoadedContract">#</a>
         
@@ -1581,7 +1935,7 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line298">line 298</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line382">line 382</a>
             </span>
         </p>
     
@@ -1613,8 +1967,8 @@
 
 
     
-    <h4 class="name" id="~updateTask">
-        <a class="href-link" href="#~updateTask">#</a>
+    <h4 class="name" id="~updateModelElements">
+        <a class="href-link" href="#~updateModelElements">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -1622,7 +1976,7 @@
         
         <span class="code-name">
             
-                updateTask<span class="signature">(modelElementToUpdate, newData)</span><span class="type-signature"></span>
+                updateModelElements<span class="signature">(modelElementToUpdate, newData)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1631,7 +1985,7 @@
     
     
     <div class="description">
-        <p>Updated a task.</p>
+        <p>Updates an element in &quot;modelElement&quot;.</p>
     </div>
     
 
@@ -1758,7 +2112,184 @@
         <p class="tag-source">
             <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
             <span>
-                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line234">line 234</a>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line336">line 336</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~updateTask">
+        <a class="href-link" href="#~updateTask">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                updateTask<span class="signature">(newTask, process)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Updates a task from a process or subprocess.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>newTask</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Task to update.</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>process</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Process or subprocess to update.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_ActivityDasContractProperties.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_ActivityDasContractProperties.js.html">components/ActivityDasContractProperties.js</a>, <a href="components_ActivityDasContractProperties.js.html#line275">line 275</a>
             </span>
         </p>
     
