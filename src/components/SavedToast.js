@@ -51,7 +51,7 @@ const SavedToast = ({ toggle, ms, fileName }) => {
   };
 
   return (
-    <ToastContainer className="mb-4 mx-4 position-fixed bottom-0 end-0 p-2">
+    <ToastContainer className="saved-toast mb-4 mx-4 position-fixed bottom-0 end-0">
       <Toast show={show} onClose={toggleShow}>
         {fileName && (
           <Toast.Header>
