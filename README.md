@@ -29,8 +29,8 @@ The main dependencies used are listed.
 - State management: [React Redux](https://react-redux.js.org)
 - Routing: [Reach Router](https://reach.tech/router/)
 - UI design: [Bootstrap 5](https://getbootstrap.com) and [Font Awesome](https://fontawesome.com) icons
-- Testing: [Jest](https://jestjs.io), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) and [Enzyme](https://enzymejs.github.io/enzyme/)
-- Documentation: [JSDoc](https://jsdoc.app)
+- Testing: [Jest](https://jestjs.io) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)https://enzymejs.github.io/enzyme/)
+- Documentation: [JSDoc](https://jsdoc.app) and [better-docs](https://github.com/SoftwareBrothers/better-docs)
 
 ### Domain specific
 
