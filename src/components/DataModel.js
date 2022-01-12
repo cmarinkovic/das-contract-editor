@@ -138,8 +138,7 @@ const DataModel = ({
         if (
           newModelElement.attributes.id === modelElementToUpdate.attributes.id
         ) {
-          newModelElement.attributes["dascontract:activity-properties"] =
-            newData;
+          newModelElement.attributes["dascontract:data-model"] = newData;
         }
       });
     });
@@ -168,6 +167,8 @@ const DataModel = ({
       ...loadedContract,
       xml: newXML,
     });
+
+    console.log(newXML);
 
     toggleSavedToastRef.current();
   };
