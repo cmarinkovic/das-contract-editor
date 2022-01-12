@@ -5,8 +5,6 @@ import React, { useEffect, useState } from "react";
 import UserActivityArrayFieldTemplate from "./UserActivityArrayFieldTemplate";
 import FormDataStateContext from "./FormDataStateContext";
 
-//Redux
-
 //Styles
 import { Accordion, Button, Col, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -97,37 +95,9 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
    * Sets up the form schema adding entities present in the DasContract data model.
    */
   const setupSchema = () => {
-    const getEntities = () => {
-      const superElementsArray = loadedContractJSON.elements[0].elements;
-      const elementsArrayIndex = superElementsArray.findIndex((element) => {
-        return element.name === "bpmn2:process";
-      });
-
-      const entities = [];
-
-      if (
-        loadedContractJSON.elements[0].elements[elementsArrayIndex].attributes[
-          "dascontract:data-model"
-        ]
-      ) {
-        const dataModel = JSON.parse(
-          loadedContractJSON.elements[0].elements[elementsArrayIndex]
-            .attributes["dascontract:data-model"]
-        );
-        dataModel.forEach((entity) => {
-          entities.push(
-            `${entity.name ? entity.name : "Untitled"} (${
-              entity.id && entity.id
-            })`
-          );
-        });
-      }
-
-      return entities;
-    };
-
-    const entities = getEntities();
-
+    const rootProcesses = getRootProcesses();
+    const entities = getEntities(rootProcesses);
+    console.log(entities);
     setSchema({
       type: "array",
       items: {
@@ -165,6 +135,47 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
         },
         required: ["id", "name", "label"],
       },
+    });
+  };
+
+  /**
+   * Obtains the entities of data models.
+   *
+   * @returns {Array<Object>} Entities of data models.
+   */
+  const getEntities = (rootProcesses) => {
+    const entities = [];
+
+    rootProcesses &&
+      rootProcesses.forEach((process) => {
+        if (process.attributes["dascontract:data-model"]) {
+          const dataModel = JSON.parse(
+            process.attributes["dascontract:data-model"]
+          );
+
+          dataModel.forEach((entity) => {
+            entities.push(
+              `${process.attributes.id} - ${
+                entity.name ? entity.name : "Untitled"
+              } - ${entity.id && entity.id}`
+            );
+          });
+        }
+      });
+
+    return entities;
+  };
+
+  /**
+   * Gets root processes from "loadedContractJSON".
+   *
+   *@returns {Array<Object>} Root processes array.
+   */
+  const getRootProcesses = () => {
+    const elementsArr = loadedContractJSON.elements[0].elements;
+
+    return elementsArr.filter((element) => {
+      return element.name === "bpmn2:process";
     });
   };
 

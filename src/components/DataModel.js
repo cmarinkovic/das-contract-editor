@@ -76,16 +76,16 @@ const DataModel = ({
   const [modelElements, setModelElements] = useState();
 
   useEffect(() => {
-    loadedContractJSON && filterRootProcess();
+    loadedContractJSON && filterRootProcesses();
   }, [loadedContractJSON]);
 
   /**
    * Filters processes from "loadedContractJSON" in a destructured array and sets result to "modelElements".
    */
-  const filterRootProcess = () => {
+  const filterRootProcesses = () => {
     const elementsArr = loadedContractJSON.elements[0].elements;
 
-    const rootProcess = elementsArr.filter((element) => {
+    const rootProcesses = elementsArr.filter((element) => {
       return element.name === "bpmn2:process";
     });
 
@@ -93,7 +93,7 @@ const DataModel = ({
       return element.name !== "bpmn2:process";
     });
 
-    setModelElements([rootProcess, otherElements]);
+    setModelElements([rootProcesses, otherElements]);
   };
 
   /**
@@ -167,8 +167,6 @@ const DataModel = ({
       ...loadedContract,
       xml: newXML,
     });
-
-    console.log(newXML);
 
     toggleSavedToastRef.current();
   };
