@@ -87,9 +87,9 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
-   * @param {{number}} size Updated size of Resizable component.
+   * @param {{Object}} size Updated size of Resizable component.
    */
-  const handleResize = (event, { element, size, handle }) => {
+  const handleResize = ({ size }) => {
     setViewerHeight(size.height);
   };
 

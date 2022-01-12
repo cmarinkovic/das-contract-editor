@@ -26,7 +26,7 @@ const PreventUnload = () => {
   /**
    * Prompts user to confirm unload.
    *
-   * @param {Object} event Triggered event.
+   * @param {Object} e Triggered event.
    */
   const promptUser = (e) => {
     e.preventDefault();

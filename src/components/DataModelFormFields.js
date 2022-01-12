@@ -47,7 +47,7 @@ const DataModelFormFields = ({ process, updateProcess }) => {
    * Form data state hook.
    * @constant
    *
-   * @type {Array}
+   * @type {[Array, function]}
    */
   const [formData, setFormData] = useState([]);
 
@@ -173,9 +173,9 @@ const DataModelFormFields = ({ process, updateProcess }) => {
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
-   * @param {{number}} size Updated size of Resizable component.
+   * @param {{Object}} size Updated size of Resizable component.
    */
-  const handleResize = (event, { element, size, handle }) => {
+  const handleResize = ({ size }) => {
     setViewerHeight(size.height);
   };
 

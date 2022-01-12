@@ -78,7 +78,11 @@ const DataModelArrayFieldTemplate = (props) => {
             <p className="h4">{props.title}</p>
             {props.items &&
               props.items.map((element) => (
-                <Accordion.Item className={element.className} key={element.key}>
+                <Accordion.Item
+                  className={element.className}
+                  key={element.key}
+                  eventKey={element.key}
+                >
                   <Accordion.Header>{getTitle(props.title)}</Accordion.Header>
                   <Accordion.Body>{element.children}</Accordion.Body>
                   {element.hasMoveDown && (

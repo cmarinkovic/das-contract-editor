@@ -115,16 +115,16 @@ const ProcessEditor = ({
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
-   * @param {{number}} size Updated size of Resizable component.
+   * @param {{Object}} size Updated size of Resizable component.
    */
-  const handleResize = (event, { element, size, handle }) => {
+  const handleResize = ({ size }) => {
     setViewerHeight(size.height);
   };
 
   /**
    * Handles CTRL + Z and CTRL + SHIFT + Z with the command stack of the modeler.
    *
-   * @param {Object} event Triggering event.
+   * @param {Object} e Triggering event.
    */
   const handleKeyDown = (e) => {
     if (e.ctrlKey && e.shiftKey && (e.key === "Z" || e.key === "z")) {
@@ -250,8 +250,6 @@ const ProcessEditor = ({
 
   /**
    * Attempts to create a diagram in XML with process modeler.
-   *
-   * @param {string} xml
    */
   const createNewDiagram = () => {
     try {
@@ -384,7 +382,7 @@ const ProcessEditor = ({
    */
   const saveXML = async () => {
     try {
-      saveModel();
+      await saveModel();
       await modelerRef.current.saveXML({ format: true }).then(({ xml }) => {
         encodeDownload(linkSaveXMLRef.current, loadedContract.fileName, xml);
         linkSaveXMLRef.current.click();
@@ -399,7 +397,7 @@ const ProcessEditor = ({
    */
   const saveSVG = async () => {
     try {
-      saveModel();
+      await saveModel();
       await modelerRef.current.saveSVG().then(({ svg }) => {
         encodeDownload(
           linkSaveSVGRef.current,

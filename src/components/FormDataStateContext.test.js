@@ -1,5 +1,5 @@
 import FormDataStateContext from "./FormDataStateContext";
-import { render } from "@testing-library/react";
+import { prettyDOM, render } from "@testing-library/react";
 
 describe("<FormDataStateContext/>", () => {
   let component;

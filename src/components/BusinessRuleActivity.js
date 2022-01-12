@@ -96,7 +96,7 @@ const BusinessRuleActivity = ({ task, updateTask }) => {
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
-   * @param {{number}} size Updated size of Resizable component.
+   * @param {{Object}} size Updated size of Resizable component.
    */
   const handleResize = ({ size }) => {
     setViewerHeight(size.height);
@@ -188,7 +188,7 @@ const BusinessRuleActivity = ({ task, updateTask }) => {
   /**
    * Attempts to open a diagram in XML with DMN modeler.
    *
-   * @param {string} xml
+   * @param {string} dmnXML
    */
   const openDmn = async (dmnXML) => {
     await dmnModelerRef.current
@@ -214,8 +214,6 @@ const BusinessRuleActivity = ({ task, updateTask }) => {
 
   /**
    * Attempts to create a diagram in XML with DMN modeler.
-   *
-   * @param {string} xml
    */
   const createNewDmn = () => {
     try {

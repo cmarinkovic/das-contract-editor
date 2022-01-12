@@ -16,6 +16,7 @@ describe("<NavbarImpl/>", () => {
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
+
     component.getByText("DasContract Editor");
   });
 });

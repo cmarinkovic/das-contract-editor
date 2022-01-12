@@ -10,6 +10,7 @@ describe("<PreventUnload/>", () => {
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
+
     //expect(window.beforeunload).toHaveBeenCalled();
   });
 });

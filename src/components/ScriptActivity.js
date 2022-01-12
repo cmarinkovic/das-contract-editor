@@ -19,6 +19,7 @@ import PropTypes from "prop-types";
 
 /**
  * Script activity. It provides a code editor to add a script.
+ *
  * @component
  */
 const ScriptActivity = ({ task, updateTask }) => {
@@ -45,8 +46,8 @@ const ScriptActivity = ({ task, updateTask }) => {
 
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
-   * 
-   * @param {{number}} size Updated size of Resizable component.
+   *
+   * @param {{Object}} size Updated size of Resizable component.
    */
   const handleResize = ({ size }) => {
     setViewerHeight(size.height);

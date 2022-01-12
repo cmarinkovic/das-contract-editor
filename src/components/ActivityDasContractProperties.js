@@ -9,6 +9,7 @@ import UserActivityFormFields from "./UserActivityFormFields";
 import ScriptActivity from "./ScriptActivity";
 import BusinessRuleActivity from "./BusinessRuleActivity";
 import SavedToast from "./SavedToast";
+import PreventUnload from "./PreventUnload";
 
 //Redux
 import { connect } from "react-redux";
@@ -19,7 +20,6 @@ import { Container, Row } from "react-bootstrap";
 
 //Others
 import convert from "xml-js";
-import PreventUnload from "./PreventUnload";
 import PropTypes from "prop-types";
 
 /**

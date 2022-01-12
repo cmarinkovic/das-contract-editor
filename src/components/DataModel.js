@@ -97,27 +97,13 @@ const DataModel = ({
   };
 
   /**
-   * Updated a process data model.
+   * Updates the process data model.
    *
-   * @param {Object} modelElementToUpdate Model element to update in "modelElements".
-   * @param {Object} newData New data for the model element to update.
+   * @param {Object} processToUpdate Process to update.
+   * @param {Object} newDataModel New data model for the process to update.
    */
-  const updateProcess = (modelElementToUpdate, newData) => {
-    let newModelElements;
-
-    newModelElements = [...modelElements];
-
-    newModelElements.forEach((newModelElementType) => {
-      newModelElementType.forEach((newModelElement) => {
-        if (
-          newModelElement.attributes.id === modelElementToUpdate.attributes.id
-        ) {
-          newModelElement.attributes["dascontract:data-model"] = newData;
-        }
-      });
-    });
-
-    setModelElements(newModelElements);
+  const updateProcess = (processToUpdate, newDataModel) => {
+    updateModelElements(processToUpdate, newDataModel);
 
     if (loadedContractJSON) {
       const jointModelElementTypes = [];
@@ -134,6 +120,31 @@ const DataModel = ({
 
       updateLoadedContract();
     }
+  };
+
+  /**
+   * Updates an element in "modelElement".
+   *
+   * @param {Object} modelElementToUpdate Model element to update in "modelElements".
+   * @param {Object} newData New data for the model element to update.
+   */
+  const updateModelElements = (modelElementToUpdate, newData) => {
+    let newModelElements;
+
+    newModelElements = [...modelElements];
+
+    newModelElements.forEach((newModelElementType) => {
+      newModelElementType.forEach((newModelElement) => {
+        if (
+          newModelElement.attributes.id === modelElementToUpdate.attributes.id
+        ) {
+          newModelElement.attributes["dascontract:activity-properties"] =
+            newData;
+        }
+      });
+    });
+
+    setModelElements(newModelElements);
   };
 
   /**

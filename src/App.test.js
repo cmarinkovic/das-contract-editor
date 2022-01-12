@@ -10,6 +10,7 @@ describe("<App/>", () => {
 
   test("Renders content", () => {
     console.log(prettyDOM(component.container));
+
     component.getByText("DasContract"); //Sub-components rendered.
   });
 });

@@ -83,7 +83,7 @@ const ProcessViewer = ({ loadedContract, defaultViewerHeight }) => {
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
-   * @param {{number}} size Updated size of Resizable component.
+   * @param {{Object}} size Updated size of Resizable component.
    */
   const handleResize = ({ size }) => {
     setViewerHeight(size.height);
