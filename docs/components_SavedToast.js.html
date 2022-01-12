@@ -162,7 +162,7 @@ const SavedToast = ({ toggle, ms, fileName }) => {
   };
 
   return (
-    &lt;ToastContainer className="mb-4 mx-4" position="bottom-end">
+    &lt;ToastContainer className="saved-toast mb-4 mx-4 position-fixed bottom-0 end-0">
       &lt;Toast show={show} onClose={toggleShow}>
         {fileName &amp;&amp; (
           &lt;Toast.Header>
