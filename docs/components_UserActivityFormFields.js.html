@@ -110,21 +110,21 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>//React
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 //Components
 import UserActivityArrayFieldTemplate from "./UserActivityArrayFieldTemplate";
 import FormDataStateContext from "./FormDataStateContext";
 
 //Styles
-import {Accordion, Button, Col, Container} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSave, faUser} from "@fortawesome/free-solid-svg-icons";
-import {Resizable} from "react-resizable";
+import { Accordion, Button, Col, Container } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Resizable } from "react-resizable";
 
 //Code editor
 import CodeMirror from "@uiw/react-codemirror";
-import {javascript} from "@codemirror/lang-javascript";
+import { javascript } from "@codemirror/lang-javascript";
 
 //Other
 import SchemaForm from "@rjsf/bootstrap-4";
@@ -208,7 +208,7 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
   const setupSchema = () => {
     const rootProcesses = getRootProcesses();
     const entities = getEntities(rootProcesses);
-  console.log(entities);
+    console.log(entities);
     setSchema({
       type: "array",
       items: {
@@ -257,21 +257,22 @@ const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
   const getEntities = (rootProcesses) => {
     const entities = [];
 
-    rootProcesses &amp;&amp; rootProcesses.forEach((process) => {
-      if (process.attributes["dascontract:data-model"]) {
-        const dataModel = JSON.parse(
-          process.attributes["dascontract:data-model"]
-        );
-
-        dataModel.forEach((entity) => {
-          entities.push(
-            `${process.attributes.id} - ${entity.name ? entity.name : "Untitled"} - ${
-              entity.id &amp;&amp; entity.id
-            }`
+    rootProcesses &amp;&amp;
+      rootProcesses.forEach((process) => {
+        if (process.attributes["dascontract:data-model"]) {
+          const dataModel = JSON.parse(
+            process.attributes["dascontract:data-model"]
           );
-        });
-      }
-    });
+
+          dataModel.forEach((entity) => {
+            entities.push(
+              `${process.attributes.id} - ${
+                entity.name ? entity.name : "Untitled"
+              } - ${entity.id &amp;&amp; entity.id}`
+            );
+          });
+        }
+      });
 
     return entities;
   };
