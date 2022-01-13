@@ -111,15 +111,36 @@ const ActivityDasContractProperties = ({
     const allElementsArr = getAllElementsArr(elementsWithinLanesArr);
 
     if (elementsWithinLanesArr) {
-      const classifiedEelementsArr =
+      const fullClassifiedEelementsArr =
         getFullClassifiedElementsArr(allElementsArr);
 
-      setModelElements(classifiedEelementsArr);
+      if (areActivitiesPresent(fullClassifiedEelementsArr)) {
+        setThereAreActivities(true);
+      }
 
-      classifiedEelementsArr
-        ? setThereAreActivities(true)
-        : setThereAreActivities(false);
+      setModelElements(fullClassifiedEelementsArr);
     }
+  };
+
+  /**
+   * Determines if there are activities in the array.
+   *
+   * @param {Array<Array>} arr
+   * @returns {boolean} Indicator of the presence of activities in the array.
+   */
+  const areActivitiesPresent = (arr) => {
+    try {
+      if (
+        arr[0].length > 0 ||
+        arr[1].length > 0 ||
+        arr[2].length > 0 ||
+        arr[3].length > 0
+      ) {
+        return true;
+      }
+    } catch (err) {}
+
+    return false;
   };
 
   /**

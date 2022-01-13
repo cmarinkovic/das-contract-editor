@@ -47,9 +47,10 @@ const ScriptActivity = ({ task, updateTask }) => {
   /**
    * Updates the value of "viewerHeight" when user drags the corner of Resizable component.
    *
+   * @param {Object} event Triggered event.
    * @param {{Object}} size Updated size of Resizable component.
    */
-  const handleResize = ({ size }) => {
+  const handleResize = (event, { size }) => {
     setViewerHeight(size.height);
   };
 
