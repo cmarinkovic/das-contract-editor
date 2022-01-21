@@ -33,6 +33,12 @@ The main dependencies used are listed.
 - Resizable components: [react-resizable](https://github.com/react-grid-layout/react-resizable)
 - Dropzone for file load: [react-dropzone](https://react-dropzone.js.org)
 
+## Component diagram
+
+A component diagram that denotes the high level interactions between React components.
+
+![Component diagram](Component diagram.svg)
+
 ## How to run and build
 
 1. Install the dependencies: yarn install
