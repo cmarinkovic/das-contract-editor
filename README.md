@@ -37,7 +37,7 @@ The main dependencies used are listed.
 
 A component diagram that denotes the high level interactions between React components.
 
-![Component diagram](Component diagram.svg)
+![Component diagram](images/component_diagram.svg)
 
 ## How to run and build
 
