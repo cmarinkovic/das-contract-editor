@@ -81,3 +81,6 @@ reactComponents['ScriptActivity'] = Component18;
 
 import Component19 from '../src/components/UserActivityArrayFieldTemplate.js';
 reactComponents['UserActivityArrayFieldTemplate'] = Component19;
+
+import Component20 from '../src/components/UserActivityFormFields.js';
+reactComponents['UserActivityFormFields'] = Component20;

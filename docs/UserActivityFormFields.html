@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Introduction</title>
+  <title> UserActivityFormFields</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -98,7 +98,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Components</p>
-                    <h1>Introduction</h1>
+                    <h1>UserActivityFormFields</h1>
                 </header>
                 
 
@@ -110,7 +110,7 @@
 <header>
     
         <h2>
-            &ltIntroduction <i>loadedContract</i> <i>appStarted</i> <i>startApp</i> /&gt
+            &ltUserActivityFormFields <i>task</i> <i>updateTask</i> /&gt
         </h2>
         
     
@@ -130,12 +130,12 @@
 
 
     
-    <h4 class="name" id="Introduction">
-        <a class="href-link" href="#Introduction">#</a>
+    <h4 class="name" id="UserActivityFormFields">
+        <a class="href-link" href="#UserActivityFormFields">#</a>
         
         <span class="code-name">
             
-                &ltIntroduction <i>loadedContract</i> <i>appStarted</i> <i>startApp</i> /&gt
+                &ltUserActivityFormFields <i>task</i> <i>updateTask</i> /&gt
             
         </span>
     </h4>
@@ -144,7 +144,7 @@
     
     
     <div class="description">
-        <p>Introduction for the user.</p>
+        <p>Enables to edit an user activity by form fields provided through react-jsonschema-form.</p>
     </div>
     
 
@@ -172,34 +172,23 @@
     <tbody>
     
           <tr class="deep-level-0">
-            <td class="name"><code>loadedContract</code></td>
+            <td class="name"><code>task</code></td>
             <td>
               object
             </td>
-            <td>No</td>
-            <td>Loaded contract JSON.</td>
-            <td></td>
-          </tr>
-          
-    
-          <tr class="deep-level-0">
-            <td class="name"><code>appStarted</code></td>
-            <td>
-              bool
-            </td>
             <td>Yes</td>
-            <td>App started indicator.</td>
+            <td>Task data.</td>
             <td></td>
           </tr>
           
     
           <tr class="deep-level-0">
-            <td class="name"><code>startApp</code></td>
+            <td class="name"><code>updateTask</code></td>
             <td>
               func
             </td>
             <td>Yes</td>
-            <td>Action to set appStarted === true</td>
+            <td>Callback to update the value of task in the parent component.</td>
             <td></td>
           </tr>
           
@@ -248,9 +237,9 @@
 
     
         <p class="tag-source">
-            <a href="components_Home.js.html" class="button">View Source</a>
+            <a href="components_UserActivityFormFields.js.html" class="button">View Source</a>
             <span>
-                <a href="components_Home.js.html">components/Home.js</a>, <a href="components_Home.js.html#line138">line 138</a>
+                <a href="components_UserActivityFormFields.js.html">components/UserActivityFormFields.js</a>, <a href="components_UserActivityFormFields.js.html#line27">line 27</a>
             </span>
         </p>
     
@@ -300,6 +289,518 @@
 
     
 
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~getEntities">
+        <a class="href-link" href="#~getEntities">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                getEntities<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Obtains the entities of data models.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_UserActivityFormFields.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_UserActivityFormFields.js.html">components/UserActivityFormFields.js</a>, <a href="components_UserActivityFormFields.js.html#line151">line 151</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Entities of data models.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;Object></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~getRootProcesses">
+        <a class="href-link" href="#~getRootProcesses">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                getRootProcesses<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Gets root processes from &quot;loadedContractJSON&quot;.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_UserActivityFormFields.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_UserActivityFormFields.js.html">components/UserActivityFormFields.js</a>, <a href="components_UserActivityFormFields.js.html#line179">line 179</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Root processes array.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;Object></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~handleResize">
+        <a class="href-link" href="#~handleResize">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                handleResize<span class="signature">(size)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Updates the value of &quot;viewerHeight&quot; when user drags the corner of Resizable component.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>size</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Updated size of Resizable component.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_UserActivityFormFields.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_UserActivityFormFields.js.html">components/UserActivityFormFields.js</a>, <a href="components_UserActivityFormFields.js.html#line95">line 95</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~setupSchema">
+        <a class="href-link" href="#~setupSchema">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                setupSchema<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Sets up the form schema adding entities present in the DasContract data model.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="components_UserActivityFormFields.js.html" class="button">View Source</a>
+            <span>
+                <a href="components_UserActivityFormFields.js.html">components/UserActivityFormFields.js</a>, <a href="components_UserActivityFormFields.js.html#line102">line 102</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
     
 
     

@@ -19,6 +19,11 @@ import { javascript } from "@codemirror/lang-javascript";
 import SchemaForm from "@rjsf/bootstrap-4";
 import PropTypes from "prop-types";
 
+/**
+ * Enables to edit an user activity by form fields provided through react-jsonschema-form.
+ *
+ * @component
+ */
 const UserActivityFormFields = ({ task, updateTask, loadedContractJSON }) => {
   /**
    * Form schema state hook.
