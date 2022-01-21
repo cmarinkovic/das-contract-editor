@@ -4,32 +4,22 @@ An updated proof of concept Web editor for smart contract modeling using [DasCon
 
 This is the result of my Computer Science degree thesis project.
 
-
-
 [Production build](https://das-contract-editor.herokuapp.com)
-
-
 
 This application is fully written on React. Primarily, it integrates the functionality of bpmn-js and dmn-js, for modeling purposes, alongside with react-jsonschema-form and react-codemirror, for user input; and lastly, react-resizable and react-dropzone to improve usability.
 
-
-
 [Code documentation](https://cmarinkovic.github.io/das-contract-editor/)
-
-
 
 ## Dependencies
 
 The main dependencies used are listed.
-
-
 
 ### Basic
 
 - State management: [React Redux](https://react-redux.js.org)
 - Routing: [Reach Router](https://reach.tech/router/)
 - UI design: [Bootstrap 5](https://getbootstrap.com) and [Font Awesome](https://fontawesome.com) icons
-- Testing: [Jest](https://jestjs.io) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)https://enzymejs.github.io/enzyme/)
+- Testing: [Jest](https://jestjs.io) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - Documentation: [JSDoc](https://jsdoc.app) and [better-docs](https://github.com/SoftwareBrothers/better-docs)
 
 ### Domain specific
@@ -42,8 +32,6 @@ The main dependencies used are listed.
 
 - Resizable components: [react-resizable](https://github.com/react-grid-layout/react-resizable)
 - Dropzone for file load: [react-dropzone](https://react-dropzone.js.org)
-
-
 
 ## How to run and build
 
